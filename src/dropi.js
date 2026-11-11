@@ -108,7 +108,9 @@ export function mapProduct(p, entry, markup) {
     ? variations.reduce((a, v) => a + (v.stock || 0), 0)
     : Number(p.stock) || (p.warehouse_product ? sumStock(p.warehouse_product) : 0);
   const prices = isVariable ? variations.filter((v) => v.stock > 0).map((v) => v.price) : [retail(productSale, productSuggested)];
-  const images = (Array.isArray(p.gallery) ? p.gallery : []).map(imageUrl).filter(Boolean);
+  const pics = Array.isArray(p.photos) && p.photos.length ? p.photos : Array.isArray(p.gallery) ? p.gallery : [];
+  const ordered = [...pics.filter((g) => g?.main), ...pics.filter((g) => !g?.main)];
+  const images = [...new Set(ordered.map(imageUrl).filter(Boolean))];
   return {
     id: String(p.id),
     dropiId: Number(p.id),

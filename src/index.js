@@ -1,7 +1,7 @@
 import { CATALOG, DEFAULT_MARKUP } from "./catalog.js";
 import { DropiError, getDropiProduct, mapProduct, createDropiOrder, DEPARTMENTS } from "./dropi.js";
 
-const CACHE_SECONDS = 600; // los datos de Dropi se refrescan cada 10 minutos
+const CACHE_SECONDS = 900; // los datos de Dropi se refrescan cada 15 minutos
 
 const json = (data, status = 200, extra = {}) =>
   new Response(JSON.stringify(data), {
@@ -10,22 +10,42 @@ const json = (data, status = 200, extra = {}) =>
   });
 
 // Lee un producto de Dropi, con caché para no consultar Dropi en cada visita.
+// Se guarda además una copia de respaldo (24 h) que se usa si Dropi no responde o limita las consultas.
 async function loadProduct(env, ctx, entry, { fresh = false } = {}) {
   const cache = caches.default;
   const key = new Request(`https://cache.muvy.internal/product/${entry.dropiId}`);
+  const backupKey = new Request(`https://cache.muvy.internal/backup/${entry.dropiId}`);
   if (!fresh) {
     const hit = await cache.match(key);
     if (hit) return mapProduct(await hit.json(), entry, DEFAULT_MARKUP);
   }
-  const raw = await getDropiProduct(env, entry.dropiId);
-  ctx.waitUntil(cache.put(key, new Response(JSON.stringify(raw), {
-    headers: { "content-type": "application/json", "cache-control": `max-age=${CACHE_SECONDS}` }
-  })));
+  let raw;
+  try {
+    raw = await getDropiProduct(env, entry.dropiId);
+  } catch (e) {
+    const backup = await cache.match(backupKey);
+    if (backup && !fresh) return mapProduct(await backup.json(), entry, DEFAULT_MARKUP);
+    throw e;
+  }
+  const body = JSON.stringify(raw);
+  ctx.waitUntil(Promise.all([
+    cache.put(key, new Response(body, { headers: { "content-type": "application/json", "cache-control": `max-age=${CACHE_SECONDS}` } })),
+    cache.put(backupKey, new Response(body, { headers: { "content-type": "application/json", "cache-control": "max-age=86400" } }))
+  ]));
   return mapProduct(raw, entry, DEFAULT_MARKUP);
 }
 
+// Consulta Dropi de a pocos productos a la vez para no superar su límite.
+async function inBatches(items, size, fn) {
+  const out = [];
+  for (let i = 0; i < items.length; i += size) {
+    out.push(...await Promise.allSettled(items.slice(i, i + size).map(fn)));
+  }
+  return out;
+}
+
 async function loadCatalog(env, ctx) {
-  const results = await Promise.allSettled(CATALOG.map((e) => loadProduct(env, ctx, e)));
+  const results = await inBatches(CATALOG, 3, (e) => loadProduct(env, ctx, e));
   const products = [];
   const errors = [];
   results.forEach((r, i) => {
@@ -182,13 +202,6 @@ export default {
         const { products, errors } = await loadCatalog(env, ctx);
         if (errors.length) console.warn("Productos con error", JSON.stringify(errors));
         return json({ products: products.map(publicProduct), ...(url.searchParams.has("diag") ? { errors } : {}) }, 200, { "cache-control": "public, max-age=60" });
-      }
-      const rawM = url.pathname.match(/^\/api\/raw-shape\/(\d+)$/);
-      if (rawM) {
-        // Temporal: muestra la forma de los datos de Dropi (sin token) para ajustar las fotos.
-        const raw = await getDropiProduct(env, rawM[1]);
-        const shape = (o, d = 0) => Array.isArray(o) ? [o.length ? shape(o[0], d + 1) : "[]"] : (o && typeof o === "object" && d < 3) ? Object.fromEntries(Object.entries(o).map(([k, v]) => [k, shape(v, d + 1)])) : (typeof o === "string" ? o.slice(0, 90) : o);
-        return json({ keys: Object.keys(raw), gallery: shape(raw.gallery), photos: shape(raw.photos), images: shape(raw.images), main: shape(raw.main_image ?? raw.image ?? raw.img) });
       }
       const m = url.pathname.match(/^\/api\/products\/(\d+)$/);
       if (m && request.method === "GET") {
