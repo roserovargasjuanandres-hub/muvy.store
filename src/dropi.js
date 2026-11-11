@@ -12,12 +12,13 @@ export function dropiBase(env) {
 }
 
 export async function dropi(env, path, body) {
-  if (!env.DROPI_TOKEN) throw new DropiError("La tienda aún no está conectada a Dropi (falta DROPI_TOKEN).", 503);
+  const token = String(env.DROPI_TOKEN || "").trim();
+  if (!token) throw new DropiError("La tienda aún no está conectada a Dropi (falta DROPI_TOKEN).", 503);
   let res;
   try {
     res = await fetch(dropiBase(env) + path, {
       method: body === undefined ? "GET" : "POST",
-      headers: { "Content-Type": "application/json;charset=UTF-8", "dropi-integration-key": env.DROPI_TOKEN },
+      headers: { "Content-Type": "application/json;charset=UTF-8", "dropi-integration-key": token },
       body: body === undefined ? undefined : JSON.stringify(body),
       signal: AbortSignal.timeout(25000)
     });
@@ -25,7 +26,10 @@ export async function dropi(env, path, body) {
     throw new DropiError("No pudimos conectar con Dropi. Intenta de nuevo en un momento.");
   }
   const data = await res.json().catch(() => null);
-  if (res.status === 401 || res.status === 403) throw new DropiError("Dropi rechazó el token de la tienda.", 502);
+  if (res.status === 401 || res.status === 403) {
+    const why = data?.message || data?.error || "";
+    throw new DropiError(`Dropi rechazó el token de la tienda (HTTP ${res.status}${why ? ": " + (typeof why === "string" ? why : JSON.stringify(why)).slice(0, 200) : ""}).`, 502);
+  }
   if (!res.ok || !data || data.isSuccess === false) {
     const msg = data?.message || data?.error || `Dropi respondió ${res.status}`;
     throw new DropiError(typeof msg === "string" ? msg : JSON.stringify(msg).slice(0, 200));
