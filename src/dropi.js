@@ -110,10 +110,13 @@ export function mapProduct(p, entry, markup) {
   const prices = isVariable ? variations.filter((v) => v.stock > 0).map((v) => v.price) : [retail(productSale, productSuggested)];
   const pics = Array.isArray(p.photos) && p.photos.length ? p.photos : Array.isArray(p.gallery) ? p.gallery : [];
   const ordered = [...pics.filter((g) => g?.main), ...pics.filter((g) => !g?.main)];
-  const images = [...new Set(ordered.map(imageUrl).filter(Boolean))];
+  const images = [...new Set([entry.image, ...ordered.map(imageUrl)].filter(Boolean))];
   return {
     id: String(p.id),
     dropiId: Number(p.id),
+    slug: entry.slug || null,
+    compareAt: entry.compareAt || null,
+    bundle: entry.bundle || null,
     name: entry.name || String(p.name || `Producto ${p.id}`),
     category: entry.category || "Hogar",
     featured: Boolean(entry.featured),

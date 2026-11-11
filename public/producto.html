@@ -2,31 +2,30 @@
 <html lang="es">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Producto · MUVY</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#9A4430">
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/styles.css?v=2">
+  <title>Producto · MUVY</title>
+  <meta name="description" content="Productos para el hogar con pago contraentrega y envío a toda Colombia.">
 </head>
 <body data-page="product">
   <div id="header"></div>
-
   <main class="wrap">
-    <div class="crumbs"><a href="/">Inicio</a> / <a href="/catalogo">Catálogo</a> / <span id="crumb-name"></span></div>
-    <section class="product" id="product"></section>
-
-    <section class="section" style="padding-top:0">
-      <div class="section-head">
-        <div><div class="eyebrow">También te puede gustar</div><h2>Más para tu casa</h2></div>
-      </div>
+    <section id="product"></section>
+    <section class="section">
+      <div class="section-head"><div><span class="eyebrow">TAMBIÉN TE PUEDE GUSTAR</span><h2>Más para tu casa</h2></div></div>
       <div class="grid" id="related"></div>
     </section>
   </main>
-
+  <div class="buybar" id="buybar"></div>
   <div id="footer"></div>
   <script src="/assets/config.js"></script>
-  <script src="/assets/app.js"></script>
+  <script src="/assets/art.js?v=2"></script>
+  <script src="/assets/content.js?v=2"></script>
+  <script src="/assets/app.js?v=2"></script>
 </body>
 </html>

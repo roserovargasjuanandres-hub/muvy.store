@@ -1,23 +1,43 @@
 // Productos de Dropi que se muestran en MUVY.
-// Solo pones el ID de Dropi; nombre, fotos, stock, variantes y precios se leen en vivo desde Dropi.
+// Solo pones el ID de Dropi; stock, variantes, descripción y fotos de respaldo se leen en vivo desde Dropi.
 //
-//   dropiId   ID del producto en Dropi (obligatorio)
-//   category  sección de la tienda donde aparece
-//   featured  true = aparece en "Lo más pedido" del inicio
-//   price     (opcional) precio de venta fijo en COP. Si no lo pones, se usa el precio sugerido de Dropi.
-//   name      (opcional) nombre que quieres mostrar en vez del de Dropi
+//   dropiId    ID del producto en Dropi (obligatorio)
+//   slug       nombre corto para el contenido extra de la página (public/assets/content.js)
+//   category   sección de la tienda donde aparece
+//   featured   true = aparece primero en el inicio
+//   name       (opcional) nombre que quieres mostrar en vez del de Dropi
+//   price      (opcional) precio de venta fijo en COP. Si no lo pones, se usa el precio sugerido de Dropi.
+//   compareAt  (opcional) precio "antes" que se muestra tachado
+//   bundle     (opcional) combo: { qty, price, compareAt } — precio total al llevar esa cantidad
+//   image      (opcional) foto principal propia (en public/assets/img); las de Dropi quedan como galería
 export const CATALOG = [
-  { dropiId: 2324095, category: "Habitación", featured: true, name: "Sábana unicolor" },
-  { dropiId: 1880273, category: "Cocina", featured: true, name: "Set de cuchillos con pelador" },
-  { dropiId: 1839648, category: "Limpieza", featured: true, name: "Robot aspirador" },
-  { dropiId: 1852772, category: "Organización", featured: true, name: "6 bolsas ahorradoras de espacio" },
-  { dropiId: 2146104, category: "Cocina", name: "Licuadora RAF 15 velocidades" },
-  { dropiId: 1938185, category: "Clima", name: "Ventilador de mesa 8\" Kalley" },
-  { dropiId: 1827864, category: "Mascotas", name: "Comedero programable para mascotas" },
-  { dropiId: 2322692, category: "Iluminación", name: "Kit solar recargable 3 luces USB" },
-  { dropiId: 120145, category: "Iluminación", name: "Luces de jardín" },
-  { dropiId: 678283, category: "Iluminación", name: "Luces de discoteca" }
+  {
+    dropiId: 2316828, slug: "timbre", category: "Seguridad", featured: true,
+    name: "Timbre Inalámbrico Inteligente",
+    price: 79950, compareAt: 95000,
+    bundle: { qty: 2, price: 149950, compareAt: 160000 },
+    image: "/assets/img/timbre.png"
+  },
+  // Lámpara cubo de tulipanes: falta confirmar su ID de Dropi.
+  // { dropiId: 0, slug: "cubo-tulipanes", category: "Iluminación", featured: true,
+  //   name: "Lámpara Cubo de Tulipanes con Efecto Espejo", price: 65900, compareAt: 79500,
+  //   bundle: { qty: 2, price: 85950, compareAt: 95950 }, image: "/assets/img/cubo-tulipanes.jpg" },
+  { dropiId: 659568, slug: "calentador", category: "Clima", featured: true, name: "Mini Calentador Portátil", image: "/assets/img/calentador.jpg" },
+  { dropiId: 2329707, slug: "picatodo", category: "Cocina", featured: true, name: "Pica Todo 2 en 1", image: "/assets/img/picatodo.jpg" },
+  { dropiId: 2328496, slug: "espejo", category: "Baño y belleza", name: "Espejo de Maquillaje LED", image: "/assets/img/espejo.jpg" },
+  { dropiId: 2329947, slug: "almohada", category: "Descanso", name: "Almohada Cervical Ergonómica", image: "/assets/img/almohada.jpg" },
+  { dropiId: 590553, slug: "hervidor", category: "Cocina", name: "Hervidor Eléctrico Plegable", image: "/assets/img/hervidor.jpg" },
+  { dropiId: 1214798, slug: "dispensador", category: "Baño y belleza", name: "Dispensador y Esterilizador UV", image: "/assets/img/dispensador.jpg" },
+  { dropiId: 2283472, slug: "cortador", category: "Cocina", name: "Cortador de Verduras Vertical", image: "/assets/img/cortador.jpg" },
+  { dropiId: 2306315, slug: "solar", category: "Iluminación", name: "Lámpara Solar LED 3 Cabezas", image: "/assets/img/solar.jpg" },
+  { dropiId: 1719052, slug: "sierra", category: "Herramientas", name: "Mini Sierra Eléctrica", image: "/assets/img/sierra.jpg" }
 ];
 
 // Si un producto no tiene precio sugerido en Dropi, se vende al costo × este margen.
 export const DEFAULT_MARKUP = 1.8;
+
+// Precio total de una línea del pedido, aplicando el combo cuando la cantidad coincide.
+export function lineTotal(entry, unitPrice, qty) {
+  if (entry.bundle && qty === entry.bundle.qty) return entry.bundle.price;
+  return unitPrice * qty;
+}

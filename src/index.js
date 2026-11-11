@@ -1,4 +1,4 @@
-import { CATALOG, DEFAULT_MARKUP } from "./catalog.js";
+import { CATALOG, DEFAULT_MARKUP, lineTotal } from "./catalog.js";
 import { DropiError, getDropiProduct, mapProduct, createDropiOrder, DEPARTMENTS } from "./dropi.js";
 
 const CACHE_SECONDS = 900; // los datos de Dropi se refrescan cada 15 minutos
@@ -117,7 +117,9 @@ async function createOrder(request, env, ctx) {
     } else if (p.stock < qty) {
       return json({ error: `${p.name} no tiene suficiente stock.` }, 409);
     }
-    lines.push({ p, variation, qty, price });
+    // Combo (ej. 2 por $149.950): el total de la línea es el del combo y el precio unitario se reparte.
+    const total = lineTotal(entry, price, qty);
+    lines.push({ p, variation, qty, price: total / qty, total });
   }
 
   // Dropi recibe un pedido por proveedor.
@@ -136,7 +138,7 @@ async function createOrder(request, env, ctx) {
   for (const [supplierId, group] of groups) {
     n += 1;
     const ref = groups.size > 1 ? `${orderRef}-${n}` : orderRef;
-    const total = group.reduce((s, l) => s + l.price * l.qty, 0);
+    const total = group.reduce((s, l) => s + l.total, 0);
     const payload = {
       total_order: total,
       notes: [customer.notas, `Pedido web MUVY ${ref}`].filter(Boolean).join(" · "),
