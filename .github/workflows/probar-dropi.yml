@@ -1,0 +1,16 @@
+name: Probar conexión con Dropi
+on:
+  push:
+    paths: [".github/workflows/probar-dropi.yml"]
+  workflow_dispatch:
+jobs:
+  probar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Consultar Dropi desde GitHub (sin token y con token falso)
+        run: |
+          echo "--- Sin token ---"
+          curl -sS -m 30 -w "\nHTTP %{http_code}\n" -H "Content-Type: application/json;charset=UTF-8" https://api.dropi.co/integrations/products/v2/1880273 | head -c 400
+          echo
+          echo "--- Token falso ---"
+          curl -sS -m 30 -w "\nHTTP %{http_code}\n" -H "Content-Type: application/json;charset=UTF-8" -H "dropi-integration-key: token-falso" https://api.dropi.co/integrations/products/v2/1880273 | head -c 400
