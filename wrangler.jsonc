@@ -2,6 +2,10 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "muvy",
   "compatibility_date": "2026-11-01",
+  "routes": [
+    { "pattern": "muvy.shop", "custom_domain": true },
+    { "pattern": "www.muvy.shop", "custom_domain": true }
+  ],
   "assets": {
     "directory": "./public",
     "not_found_handling": "404-page"
