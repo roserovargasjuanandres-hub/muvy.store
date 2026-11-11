@@ -7,10 +7,18 @@ jobs:
   probar:
     runs-on: ubuntu-latest
     steps:
-      - name: Consultar Dropi desde GitHub (sin token y con token falso)
+      - name: Consultar Dropi desde GitHub con el token real
+        env:
+          DROPI_TOKEN: ${{ secrets.DROPI_TOKEN }}
         run: |
-          echo "--- Sin token ---"
-          curl -sS -m 30 -w "\nHTTP %{http_code}\n" -H "Content-Type: application/json;charset=UTF-8" https://api.dropi.co/integrations/products/v2/1880273 | head -c 400
-          echo
-          echo "--- Token falso ---"
-          curl -sS -m 30 -w "\nHTTP %{http_code}\n" -H "Content-Type: application/json;charset=UTF-8" -H "dropi-integration-key: token-falso" https://api.dropi.co/integrations/products/v2/1880273 | head -c 400
+          if [ -z "$DROPI_TOKEN" ]; then echo "Falta el secreto DROPI_TOKEN en GitHub"; exit 1; fi
+          echo "Largo del token: ${#DROPI_TOKEN}"
+          for path in "products/v2/1880273" "products/1880273"; do
+            echo "--- GET $path ---"
+            curl -sS -m 30 -w "\nHTTP %{http_code}\n" -H "Content-Type: application/json;charset=UTF-8" -H "dropi-integration-key: $DROPI_TOKEN" "https://api.dropi.co/integrations/$path" | head -c 300
+            echo
+          done
+          echo "--- POST products/index ---"
+          curl -sS -m 30 -w "\nHTTP %{http_code}\n" -X POST -H "Content-Type: application/json;charset=UTF-8" -H "dropi-integration-key: $DROPI_TOKEN" \
+            -d '{"startData":0,"pageSize":1,"order_type":"desc","order_by":"id","keywords":"","active":true,"no_count":true,"integration":true,"get_stock":false}' \
+            https://api.dropi.co/integrations/products/index | head -c 300
