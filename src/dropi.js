@@ -18,7 +18,12 @@ export async function dropi(env, path, body) {
   try {
     res = await fetch(dropiBase(env) + path, {
       method: body === undefined ? "GET" : "POST",
-      headers: { "Content-Type": "application/json;charset=UTF-8", "dropi-integration-key": token },
+      headers: {
+        "Content-Type": "application/json;charset=UTF-8",
+        "dropi-integration-key": token,
+        // Dropi solo acepta peticiones que se identifican como WordPress (igual que su plugin oficial).
+        "User-Agent": env.DROPI_USER_AGENT || "WordPress/6.6.2; https://muvy.shop"
+      },
       body: body === undefined ? undefined : JSON.stringify(body),
       signal: AbortSignal.timeout(25000)
     });
