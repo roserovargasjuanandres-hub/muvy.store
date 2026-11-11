@@ -1,4 +1,4 @@
-name: Probar conexión con Dropi
+name: Probar conexión con Dropi (v2)
 on:
   push:
     paths: [".github/workflows/probar-dropi.yml"]
