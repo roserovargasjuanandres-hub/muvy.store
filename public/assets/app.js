@@ -84,7 +84,9 @@
   const skeleton = (n) => Array.from({ length: n }, () => `<div class="card"><div class="card-media skel"></div><div class="skel skel-line"></div><div class="skel skel-line short"></div></div>`).join("");
 
   /* ---------- Navidad ---------- */
-  const XMAS = CFG.navidad === true || (CFG.navidad !== false && [10, 11].includes(new Date().getMonth()));
+  // Temporada navideña: del 1 de noviembre al 15 de enero (inclusive).
+  const inSeason = (d) => d.getMonth() >= 10 || (d.getMonth() === 0 && d.getDate() <= 15);
+  const XMAS = CFG.navidad === true || (CFG.navidad !== false && inSeason(new Date()));
   if (XMAS) document.body.classList.add("xmas");
   function xmasDecor() {
     if (!XMAS) return;
