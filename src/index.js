@@ -183,6 +183,13 @@ export default {
         if (errors.length) console.warn("Productos con error", JSON.stringify(errors));
         return json({ products: products.map(publicProduct), ...(url.searchParams.has("diag") ? { errors } : {}) }, 200, { "cache-control": "public, max-age=60" });
       }
+      const rawM = url.pathname.match(/^\/api\/raw-shape\/(\d+)$/);
+      if (rawM) {
+        // Temporal: muestra la forma de los datos de Dropi (sin token) para ajustar las fotos.
+        const raw = await getDropiProduct(env, rawM[1]);
+        const shape = (o, d = 0) => Array.isArray(o) ? [o.length ? shape(o[0], d + 1) : "[]"] : (o && typeof o === "object" && d < 3) ? Object.fromEntries(Object.entries(o).map(([k, v]) => [k, shape(v, d + 1)])) : (typeof o === "string" ? o.slice(0, 90) : o);
+        return json({ keys: Object.keys(raw), gallery: shape(raw.gallery), photos: shape(raw.photos), images: shape(raw.images), main: shape(raw.main_image ?? raw.image ?? raw.img) });
+      }
       const m = url.pathname.match(/^\/api\/products\/(\d+)$/);
       if (m && request.method === "GET") {
         const entry = CATALOG.find((e) => String(e.dropiId) === m[1]);
