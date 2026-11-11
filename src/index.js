@@ -224,6 +224,13 @@ export default {
           v1: await probe("products/1880273"),
           categories: await probe("categories/")
         };
+        // Comparación: el mismo pedido con un token inventado.
+        try {
+          const r = await fetch("https://api.dropi.co/integrations/products/v2/1880273", { headers: { "Content-Type": "application/json;charset=UTF-8", "dropi-integration-key": "token-invalido-de-prueba" } });
+          probes.bogusToken = { status: r.status, body: (await r.text()).slice(0, 160) };
+          const r2 = await fetch("https://api.dropi.co/integrations/products/v2/1880273", { headers: { "Content-Type": "application/json;charset=UTF-8" } });
+          probes.noToken = { status: r2.status, body: (await r2.text()).slice(0, 160) };
+        } catch (e) { probes.bogusToken = String(e); }
         return json({ probes, length: t.length, trimmedLength: tt.length, startsEyJ: tt.startsWith("eyJ"), quotes: /^["']|["']$/.test(tt), spacesInside: /\s/.test(tt), parts: tt.split(".").length, claims });
       }
       if (url.pathname === "/api/departments" && request.method === "GET") {
