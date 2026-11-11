@@ -190,6 +190,18 @@ export default {
         const p = await loadProduct(env, ctx, entry);
         return json({ product: publicProduct(p) }, 200, { "cache-control": "public, max-age=60" });
       }
+      if (url.pathname === "/api/diag-token" && request.method === "GET") {
+        // Diagnóstico temporal: describe el token SIN mostrarlo.
+        const t = String(env.DROPI_TOKEN || "");
+        const tt = t.trim();
+        let claims = null;
+        try {
+          const part = tt.split(".")[1].replace(/-/g, "+").replace(/_/g, "/");
+          const c = JSON.parse(atob(part + "=".repeat((4 - part.length % 4) % 4)));
+          claims = { keys: Object.keys(c), exp: c.exp ? new Date(c.exp * 1000).toISOString() : null, iat: c.iat ? new Date(c.iat * 1000).toISOString() : null };
+        } catch { claims = "no es JWT"; }
+        return json({ length: t.length, trimmedLength: tt.length, startsEyJ: tt.startsWith("eyJ"), quotes: /^["']|["']$/.test(tt), spacesInside: /\s/.test(tt), parts: tt.split(".").length, claims });
+      }
       if (url.pathname === "/api/departments" && request.method === "GET") {
         return json({ departments: Object.entries(DEPARTMENTS).map(([code, name]) => ({ code, name })).sort((a, b) => a.name.localeCompare(b.name, "es")) }, 200, { "cache-control": "public, max-age=86400" });
       }
