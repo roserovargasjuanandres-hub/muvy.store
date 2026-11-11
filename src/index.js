@@ -181,7 +181,7 @@ export default {
       if (url.pathname === "/api/products" && request.method === "GET") {
         const { products, errors } = await loadCatalog(env, ctx);
         if (errors.length) console.warn("Productos con error", JSON.stringify(errors));
-        return json({ products: products.map(publicProduct) }, 200, { "cache-control": "public, max-age=60" });
+        return json({ products: products.map(publicProduct), ...(url.searchParams.has("diag") ? { errors } : {}) }, 200, { "cache-control": "public, max-age=60" });
       }
       const m = url.pathname.match(/^\/api\/products\/(\d+)$/);
       if (m && request.method === "GET") {
@@ -200,7 +200,7 @@ export default {
     } catch (e) {
       console.error(e);
       const status = e instanceof DropiError ? e.status : 500;
-      return json({ error: status === 503 ? e.message : "No pudimos cargar la información de Dropi. Intenta de nuevo en un momento." }, status);
+      return json({ error: status === 503 ? e.message : "No pudimos cargar la información de Dropi. Intenta de nuevo en un momento.", detail: e instanceof DropiError ? e.message : undefined }, status);
     }
   }
 };

@@ -2,6 +2,7 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "muvy",
   "main": "src/index.js",
+  "workers_dev": true,
   "compatibility_date": "2026-11-01",
   "routes": [
     { "pattern": "muvy.shop", "custom_domain": true },
