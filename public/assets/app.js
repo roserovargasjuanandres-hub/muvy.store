@@ -412,7 +412,7 @@
 
       $("#buybar").innerHTML = canBuy ? `
         <div class="buybar-inner">
-          <div class="buybar-cd">${I("clock", 13, 'style="color:#9A4430"')}<span>${off ? "Precio de oferta por" : "Pide hoy, quedan"} <b data-cd="all">--:--:--</b> ${off ? "más" : "para el despacho de hoy"}</span></div>
+          <div class="buybar-cd">${I("clock", 13, 'style="color:#9A4430"')}<span>${off ? `Precio de oferta por <b data-cd="all">--:--:--</b> más` : "Pide hoy y pagas en efectivo cuando lo recibas"}</span></div>
           <div class="buybar-row">
             <button class="icon-btn" id="add" aria-label="Añadir al carrito">${I("cart")}</button>
             <button class="buy-main" id="buy"><span><b>Pedir ahora</b><small>Pagas al recibir</small></span><em>${money(total)}</em></button>

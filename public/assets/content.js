@@ -63,15 +63,203 @@ window.MUVY_CONTENT = {
     ]
   },
 
-  hervidor: { short: "Plegable · ahorra espacio" },
-  picatodo: { short: "2 recipientes · 2 velocidades" },
-  espejo: { short: "3 tonos de luz" },
-  almohada: { short: "Soporte para tu cuello" },
-  calentador: { short: "Con control remoto" },
-  dispensador: { short: "Para cepillos de dientes" },
-  cortador: { short: "Corta en segundos" },
-  solar: { short: "Con sensor de movimiento" },
-  sierra: { short: "Inalámbrica" }
+  hervidor: {
+    short: "Plegable · ahorra espacio",
+    subtitle: "Agua caliente en minutos para tu café, aromática o avena. Se pliega y cabe en cualquier cajón o maleta.",
+    photoChip: { icon: "cube", text: "Se pliega y se guarda fácil" },
+    tag: "IDEAL PARA VIAJAR",
+    problems: [
+      { icon: "home", q: "“Mi cocina no tiene espacio”", a: "Plegado ocupa muy poco: lo guardas en un cajón y tu mesón queda libre." },
+      { icon: "truck", q: "“De viaje no tengo cómo calentar agua”", a: "Llévalo en la maleta al hotel, la finca o la oficina. Ligero y práctico." },
+      { icon: "clock", q: "“No quiero prender la estufa para un tinto”", a: "Lo conectas, enciendes el botón y en minutos tienes el agua lista." }
+    ],
+    features: [
+      { icon: "cube", title: "Plegable", text: "Cuerpo de silicona que se comprime para guardarlo." },
+      { icon: "bolt", title: "Rápido", text: "Agua caliente en minutos con solo un botón." },
+      { icon: "truck", title: "Portátil", text: "Ligero, perfecto para viajes y oficina." },
+      { icon: "drop", title: "Fácil de limpiar", text: "Silicona lisa que se lava en segundos." }
+    ],
+    faqs: [
+      ["¿Cómo se usa?", "Despliégalo, llénalo de agua, conéctalo y presiona el botón de encendido. Cuando termines, desconéctalo, déjalo enfriar y plégalo."],
+      ["¿Se puede plegar con agua caliente?", "No. Déjalo vaciar y enfriar antes de plegarlo para guardarlo."]
+    ]
+  },
+
+  picatodo: {
+    short: "2 recipientes · 2 velocidades",
+    subtitle: "Pica cebolla, tomate, ajo y hasta carne en segundos. Sin lágrimas, sin cansarte y sin ensuciar media cocina.",
+    photoChip: { icon: "bolt", text: "Pica en segundos" },
+    tag: "FAVORITO EN LA COCINA",
+    problems: [
+      { icon: "drop", q: "“Picar cebolla me hace llorar”", a: "Lo metes al recipiente, presionas y listo. Ni lágrimas ni olor en las manos." },
+      { icon: "clock", q: "“Cocinar me toma demasiado tiempo”", a: "Lo que antes te tomaba 10 minutos de picar, ahora lo haces en segundos." },
+      { icon: "home", q: "“Moler carne en casa es un lío”", a: "El recipiente de acero te deja preparar carne molida fresca para tus recetas." }
+    ],
+    features: [
+      { icon: "sliders", title: "2 velocidades", text: "Suave para picar en trozos o rápida para triturar." },
+      { icon: "cube", title: "2 recipientes", text: "Uno en acero inoxidable y otro plástico, según lo que prepares." },
+      { icon: "bolt", title: "Uso sencillo", text: "Solo presionas el botón de arriba y empieza a picar." },
+      { icon: "drop", title: "Fácil de lavar", text: "Las piezas se separan para limpiarlas sin complicaciones." }
+    ],
+    faqs: [
+      ["¿Qué puedo picar?", "Verduras como cebolla, tomate, pimentón y ajo, hierbas, frutos secos y carne para moler."],
+      ["¿Para qué es cada recipiente?", "El de acero inoxidable es ideal para carne y preparaciones más pesadas; el plástico, para verduras y salsas."]
+    ]
+  },
+
+  espejo: {
+    short: "3 tonos de luz",
+    subtitle: "Maquíllate con luz perfecta a cualquier hora. Tres tonos de luz, brillo ajustable y una base para organizar tus cosas.",
+    photoChip: { icon: "bulb", text: "3 tonos de luz ajustables" },
+    tag: "BELLEZA",
+    problems: [
+      { icon: "bulb", q: "“Con la luz de mi cuarto me maquillo mal”", a: "Su luz LED ilumina tu rostro de frente, sin sombras, para que el maquillaje quede parejo." },
+      { icon: "home", q: "“Mi tocador es un desorden”", a: "La base sirve de bandeja para perfumes, labiales y brochas." },
+      { icon: "moon", q: "“Me arreglo temprano y aún está oscuro”", a: "Lo enciendes con un toque y tienes luz suficiente donde la necesitas." }
+    ],
+    features: [
+      { icon: "bulb", title: "3 tonos de luz", text: "Fría para detalle, natural para el día y cálida para la noche." },
+      { icon: "sliders", title: "Brillo ajustable", text: "Control táctil para subir o bajar la intensidad." },
+      { icon: "bolt", title: "Recargable", text: "Batería recargable: lo usas sin cables donde quieras." },
+      { icon: "mirror", title: "Ángulo ajustable", text: "Lo inclinas hasta encontrar tu mejor posición." }
+    ],
+    faqs: [
+      ["¿Cómo cambio el tono de luz?", "Con el botón táctil del espejo: tocas para cambiar de tono y mantienes presionado para ajustar el brillo."],
+      ["¿Necesita estar conectado?", "No. Tiene batería recargable, así que lo cargas y lo usas sin cables."]
+    ]
+  },
+
+  almohada: {
+    short: "Soporte para tu cuello",
+    subtitle: "Despierta sin dolor de cuello. Su forma ergonómica acompaña tu cabeza y tus hombros para que descanses de verdad.",
+    photoChip: { icon: "moon", text: "Descanso profundo" },
+    tag: "DESCANSO",
+    problems: [
+      { icon: "user", q: "“Me levanto con el cuello adolorido”", a: "Su diseño cervical mantiene tu cuello alineado mientras duermes." },
+      { icon: "moon", q: "“Doy vueltas toda la noche”", a: "Se adapta a ti, duermas boca arriba o de lado." },
+      { icon: "drop", q: "“Mi almohada me da calor”", a: "Tiene laterales de malla que dejan circular el aire." }
+    ],
+    features: [
+      { icon: "user", title: "Diseño cervical", text: "Forma ergonómica que acompaña cuello y hombros." },
+      { icon: "bed", title: "Boca arriba o de lado", text: "Zonas pensadas para cada posición de sueño." },
+      { icon: "drop", title: "Malla transpirable", text: "Laterales que ayudan a dormir más fresco." },
+      { icon: "heart", title: "Suave y firme", text: "Cómoda desde la primera noche y mantiene su forma." }
+    ],
+    faqs: [
+      ["¿En qué posición se usa?", "Sirve para dormir boca arriba o de lado. Prueba ambos lados de la almohada hasta encontrar la altura más cómoda para ti."],
+      ["¿Cuánto tarda en acostumbrarse uno?", "Algunas personas la sienten distinta los primeros días; es normal mientras tu cuello se acostumbra a una postura más alineada."]
+    ]
+  },
+
+  calentador: {
+    short: "Con control remoto",
+    subtitle: "Calor rápido en tu cuarto u oficina. Lo conectas directo al enchufe y lo manejas desde la cama con su control remoto.",
+    photoChip: { icon: "bolt", text: "Se conecta directo al enchufe" },
+    tag: "PARA LAS NOCHES FRÍAS",
+    problems: [
+      { icon: "moon", q: "“En las noches hace mucho frío”", a: "Calienta tu espacio en poco tiempo para que duermas abrigado." },
+      { icon: "home", q: "“Los calentadores ocupan mucho espacio”", a: "Es pequeño y va directo al enchufe: no ocupa piso ni mesa." },
+      { icon: "bed", q: "“Me da pereza levantarme a apagarlo”", a: "Con el control remoto lo ajustas sin salir de las cobijas." }
+    ],
+    features: [
+      { icon: "bolt", title: "Directo al enchufe", text: "Sin cables ni soportes: lo conectas y listo." },
+      { icon: "sliders", title: "Control remoto", text: "Ajusta la temperatura desde donde estés." },
+      { icon: "clock", title: "Pantalla digital", text: "Ves la temperatura y programas el temporizador." },
+      { icon: "home", title: "Compacto", text: "Ideal para cuarto, oficina o estudio." }
+    ],
+    faqs: [
+      ["¿Dónde lo puedo usar?", "En espacios pequeños como habitaciones, oficinas o estudios. Conéctalo a un enchufe libre, lejos de cortinas y objetos que se puedan quemar."],
+      ["¿Lo puedo dejar prendido toda la noche?", "Usa el temporizador para que se apague solo y desconéctalo cuando no lo estés usando."]
+    ]
+  },
+
+  dispensador: {
+    short: "Para cepillos de dientes",
+    subtitle: "Tu baño más ordenado e higiénico. Guarda los cepillos de toda la familia, los esteriliza con luz UV y sirve la crema dental sin desperdicio.",
+    photoChip: { icon: "shield", text: "Esterilizador UV" },
+    tag: "BAÑO LIMPIO",
+    problems: [
+      { icon: "shield", q: "“Los cepillos quedan expuestos en el baño”", a: "Quedan guardados y su luz UV ayuda a mantenerlos limpios." },
+      { icon: "home", q: "“El lavamanos siempre está desordenado”", a: "Cepillos y crema dental en un solo lugar, pegado a la pared." },
+      { icon: "drop", q: "“Los niños gastan media crema dental”", a: "El dispensador sirve la cantidad justa sin apretar el tubo." }
+    ],
+    features: [
+      { icon: "shield", title: "Esterilizador UV", text: "Luz UV para la higiene de tus cepillos." },
+      { icon: "bulb", title: "Carga solar", text: "Panel solar que aprovecha la luz del baño." },
+      { icon: "drop", title: "Dispensador de crema", text: "Crema dental lista con solo acercar el cepillo." },
+      { icon: "user", title: "Para toda la familia", text: "Espacio para 4 cepillos." }
+    ],
+    faqs: [
+      ["¿Cómo se instala?", "Se pega a la pared, sin taladro. Limpia y seca bien la superficie antes de pegarlo para que quede firme."],
+      ["¿Cómo se activa la luz UV?", "Con su botón de encendido. Funciona con el compartimiento cerrado, así que los cepillos quedan protegidos."]
+    ]
+  },
+
+  cortador: {
+    short: "Corta en segundos",
+    subtitle: "Rodajas, tiras y cubos perfectos sin acercar los dedos a la cuchilla. Cocinar se vuelve más rápido y mucho más seguro.",
+    photoChip: { icon: "shield", text: "Tus manos lejos de la cuchilla" },
+    tag: "COCINA SEGURA",
+    problems: [
+      { icon: "shield", q: "“Me he cortado picando verduras”", a: "Empujas desde arriba y tus dedos nunca tocan la cuchilla." },
+      { icon: "clock", q: "“Picar papas para la cena es eterno”", a: "Bajas el émbolo y en segundos tienes todo cortado parejo." },
+      { icon: "home", q: "“Los cortes me quedan disparejos”", a: "Cada pieza sale del mismo grosor, así se cocina igual." }
+    ],
+    features: [
+      { icon: "shield", title: "Seguro", text: "Diseño vertical que protege tus manos." },
+      { icon: "sliders", title: "Grosor ajustable", text: "Eliges el tipo y tamaño de corte." },
+      { icon: "bolt", title: "Rápido", text: "Corta frutas y verduras en segundos." },
+      { icon: "cube", title: "Con recipiente", text: "Todo cae en su bandeja, sin ensuciar el mesón." }
+    ],
+    faqs: [
+      ["¿Qué alimentos puedo cortar?", "Papas, zanahorias, pepinos, cebollas, plátano, frutas y la mayoría de verduras firmes."],
+      ["¿Cómo se limpia?", "Desármalo y lava las piezas con agua y jabón. Ten cuidado con la cuchilla al limpiarla."]
+    ]
+  },
+
+  solar: {
+    short: "Con sensor de movimiento",
+    subtitle: "Ilumina tu patio, garaje o entrada sin gastar en luz. Carga con el sol de día y se enciende sola cuando alguien pasa de noche.",
+    photoChip: { icon: "bulb", text: "Funciona con energía solar" },
+    tag: "AHORRA ENERGÍA",
+    problems: [
+      { icon: "moon", q: "“Mi entrada queda muy oscura de noche”", a: "Tres cabezas de luz LED iluminan una zona amplia." },
+      { icon: "cash", q: "“No quiero subir la factura de luz”", a: "Se carga con el sol: no gasta energía de tu casa." },
+      { icon: "tool", q: "“No hay cables afuera para instalar luz”", a: "No necesita cables: la fijas a la pared y listo." }
+    ],
+    features: [
+      { icon: "bulb", title: "Energía solar", text: "Panel que carga durante el día." },
+      { icon: "shield", title: "Sensor de movimiento", text: "Se enciende sola cuando detecta a alguien." },
+      { icon: "sliders", title: "3 cabezas giratorias", text: "Orienta cada luz hacia donde la necesitas." },
+      { icon: "tool", title: "Fácil de instalar", text: "Se fija con tornillos, sin cableado." }
+    ],
+    faqs: [
+      ["¿Cómo se instala?", "Fija la bisagra en la pared con los tornillos, pon la lámpara encima, ubica el panel donde le dé el sol y enciende el interruptor."],
+      ["¿Funciona si un día está nublado?", "Sí, aunque carga menos. Ubica el panel donde reciba el máximo de sol para que dure más en la noche."]
+    ]
+  },
+
+  sierra: {
+    short: "Inalámbrica",
+    subtitle: "Poda ramas y corta leña sin esfuerzo y sin cables. Liviana, fácil de manejar con una mano y lista para el patio o la finca.",
+    photoChip: { icon: "bolt", text: "Inalámbrica y recargable" },
+    tag: "PATIO Y FINCA",
+    problems: [
+      { icon: "tool", q: "“Podar con serrucho es agotador”", a: "La sierra hace el trabajo por ti: cortas una rama en segundos." },
+      { icon: "home", q: "“Una motosierra grande es pesada y peligrosa”", a: "Es compacta y liviana, pensada para trabajos de casa y jardín." },
+      { icon: "bolt", q: "“No hay enchufe en la finca”", a: "Funciona con batería recargable, la llevas a donde la necesites." }
+    ],
+    features: [
+      { icon: "bolt", title: "Batería recargable", text: "Sin cables ni gasolina." },
+      { icon: "tool", title: "Corte rápido", text: "Ramas y troncos delgados en segundos." },
+      { icon: "user", title: "Una sola mano", text: "Liviana y fácil de controlar." },
+      { icon: "cube", title: "Con estuche", text: "Viene en maletín para guardarla y transportarla." }
+    ],
+    faqs: [
+      ["¿Qué puede cortar?", "Ramas, arbustos y troncos delgados: ideal para poda, jardín y leña pequeña."],
+      ["¿Es segura?", "Úsala siempre con las dos manos libres de obstáculos, gafas y guantes, y retira la batería antes de limpiarla o cambiar la cadena."]
+    ]
+  }
 };
 
 // Preguntas que aplican a todos los productos.
