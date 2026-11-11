@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Carrito · MUVY</title>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/styles.css">
+</head>
+<body data-page="cart">
+  <div id="header"></div>
+
+  <main class="wrap">
+    <div class="page-head">
+      <div class="eyebrow">Tu pedido</div>
+      <h1 class="page-title">Carrito</h1>
+    </div>
+    <div class="cart-layout" id="cart-layout">
+      <div id="cart-items"></div>
+      <aside class="summary">
+        <h2>Resumen</h2>
+        <div class="row"><span>Subtotal</span><span id="subtotal"></span></div>
+        <div class="row"><span>Envío</span><span id="shipping"></span></div>
+        <div class="row total"><span>Total</span><span id="total"></span></div>
+
+        <form class="form" id="checkout">
+          <div><label for="nombre">Nombre completo</label><input id="nombre" name="nombre" required autocomplete="name"></div>
+          <div><label for="telefono">Celular</label><input id="telefono" name="telefono" type="tel" required autocomplete="tel" inputmode="tel"></div>
+          <div><label for="departamento">Departamento</label><input id="departamento" name="departamento" required></div>
+          <div><label for="ciudad">Ciudad o municipio</label><input id="ciudad" name="ciudad" required></div>
+          <div><label for="direccion">Dirección y barrio</label><input id="direccion" name="direccion" required autocomplete="street-address"></div>
+          <div><label for="notas">Notas (opcional)</label><textarea id="notas" name="notas" rows="2"></textarea></div>
+          <button class="btn btn-primary btn-block" type="submit">Confirmar pedido por WhatsApp</button>
+        </form>
+        <p class="note">Pagas en efectivo cuando recibes tu pedido.</p>
+      </aside>
+    </div>
+  </main>
+
+  <div id="footer"></div>
+  <script src="/assets/config.js"></script>
+  <script src="/assets/products.js"></script>
+  <script src="/assets/app.js"></script>
+</body>
+</html>

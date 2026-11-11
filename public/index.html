@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MUVY · Cosas útiles y bonitas para tu casa</title>
+  <meta name="description" content="MUVY: productos para el hogar con envío gratis a toda Colombia y pago contra entrega.">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/styles.css">
+</head>
+<body data-page="home">
+  <div id="header"></div>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <div>
+          <div class="eyebrow">Hogar · Cocina · Organización</div>
+          <h1>Tu casa, más <em>tuya</em> cada día.</h1>
+          <p>Elegimos cosas útiles y bonitas para que tu hogar funcione mejor. Pides en un minuto, te llega a la puerta y pagas al recibir.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="/catalogo">Ver catálogo</a>
+            <a class="btn btn-ghost" href="#destacados">Lo más pedido</a>
+          </div>
+        </div>
+        <div class="hero-art">
+          <img src="https://d39ru7awumhhs2.cloudfront.net/colombia/products/2324095/bad17ee4-7277-4d87-8864-54478c9ce4d0.jpg" alt="Sábanas unicolor en una habitación">
+          <div class="hero-badge"><strong>Pago contra entrega</strong>Sin tarjetas, sin riesgos</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="perks">
+      <div class="wrap">
+        <div class="perk"><div class="perk-icon">🚚</div><div>Envío gratis<small>A toda Colombia</small></div></div>
+        <div class="perk"><div class="perk-icon">💵</div><div>Pagas al recibir<small>Efectivo en la puerta</small></div></div>
+        <div class="perk"><div class="perk-icon">💬</div><div>Atención por WhatsApp<small>Te acompañamos en tu pedido</small></div></div>
+      </div>
+    </section>
+
+    <section class="section" id="destacados">
+      <div class="wrap">
+        <div class="section-head">
+          <div><div class="eyebrow">Favoritos</div><h2>Lo más pedido</h2></div>
+          <a class="link-arrow" href="/catalogo">Ver todo →</a>
+        </div>
+        <div class="grid" id="featured"></div>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:0">
+      <div class="wrap">
+        <div class="section-head">
+          <div><div class="eyebrow">Explora</div><h2>Compra por espacio</h2></div>
+        </div>
+        <div class="cats" id="cats"></div>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:0">
+      <div class="wrap">
+        <div class="band">
+          <div>
+            <h2>¿Dudas antes de pedir?</h2>
+            <p>Escríbenos por WhatsApp y te ayudamos a elegir la medida, el color o el producto ideal para tu casa.</p>
+          </div>
+          <div style="text-align:right"><a class="btn btn-primary" id="wa-band" href="#" target="_blank" rel="noopener">Hablar por WhatsApp</a></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="footer"></div>
+  <script src="/assets/config.js"></script>
+  <script src="/assets/products.js"></script>
+  <script src="/assets/app.js"></script>
+  <script>document.getElementById("wa-band").href = "https://wa.me/" + MUVY_CONFIG.whatsapp;</script>
+</body>
+</html>
