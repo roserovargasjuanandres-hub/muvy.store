@@ -83,6 +83,29 @@
   const errorBox = (msg) => `<div class="empty" style="grid-column:1/-1"><p>${esc(msg)}</p><button class="btn btn-ghost" onclick="location.reload()">Reintentar</button></div>`;
   const skeleton = (n) => Array.from({ length: n }, () => `<div class="card"><div class="card-media skel"></div><div class="skel skel-line"></div><div class="skel skel-line short"></div></div>`).join("");
 
+  /* ---------- Navidad ---------- */
+  const XMAS = CFG.navidad === true || (CFG.navidad !== false && [10, 11].includes(new Date().getMonth()));
+  if (XMAS) document.body.classList.add("xmas");
+  function xmasDecor() {
+    if (!XMAS) return;
+    // Guirnalda de luces bajo el banner (o arriba en la página de producto).
+    const lights = document.createElement("div");
+    lights.className = "xmas-lights";
+    lights.setAttribute("aria-hidden", "true");
+    lights.innerHTML = ART.lights;
+    const anchor = $(".announce") || $(".header");
+    anchor.insertAdjacentElement(page === "product" ? "beforebegin" : "afterend", lights);
+    // Nieve suave sobre toda la página.
+    const snow = document.createElement("div");
+    snow.className = "xmas-snow";
+    snow.setAttribute("aria-hidden", "true");
+    snow.innerHTML = Array.from({ length: 22 }, (_, i) => {
+      const size = 4 + (i * 5) % 6, left = (i * 47 + 3) % 100, dur = 11 + (i * 7) % 9, delay = -((i * 1.9) % dur).toFixed(1);
+      return `<i style="left:${left}%;width:${size}px;height:${size}px;animation-duration:${dur}s;animation-delay:${delay}s"></i>`;
+    }).join("");
+    document.body.appendChild(snow);
+  }
+
   /* ---------- Estructura común ---------- */
   function renderShell() {
     const navLink = (href, label, key) => `<a href="${href}" class="${page === key ? "active" : ""}">${label}</a>`;
@@ -97,7 +120,7 @@
           <span><span class="announce-title">PAGA AL RECIBIR TU PEDIDO</span><span class="announce-sub">Contraentrega · Envíos a toda Colombia</span></span>
         </div>
         <a class="announce-offer" href="/catalogo" id="announce-offer">
-          <b>${ART.icon("bolt", 14, 'fill="#9A4430" stroke="#9A4430"')} OFERTAS DE HOY</b>
+          <b>${XMAS ? ART.holly : ART.icon("bolt", 14, 'fill="#9A4430" stroke="#9A4430"')} ${XMAS ? "OFERTAS DE NAVIDAD" : "OFERTAS DE HOY"}</b>
           <span class="cd-pill" data-cd="all">--:--:--</span>
         </a>
       </div></div>`}
@@ -124,6 +147,7 @@
         </div>
         <div><h4>TIENDA</h4><a href="/catalogo">Todo el catálogo</a><a href="/catalogo?cat=Cocina">Cocina</a><a href="/catalogo?cat=Iluminación">Iluminación</a></div>
         <div><h4>AYUDA</h4><a href="${waLink()}" target="_blank" rel="noopener">WhatsApp</a><a href="/carrito">Mi carrito</a></div>
+        ${XMAS ? `<div class="footer-xmas">${ART.holly} Feliz Navidad y un próspero año nuevo de parte de todo el equipo MUVY</div>` : ""}
         <div class="footer-bottom">© ${new Date().getFullYear()} MUVY · muvy.shop</div>
       </div></footer>
       <div class="floaters">
@@ -132,6 +156,7 @@
       </div>`;
     updateCount();
     tick();
+    xmasDecor();
   }
 
   function card(p) {
@@ -168,6 +193,11 @@
   /* ---------- Inicio ---------- */
   async function home() {
     $("#hero-art").innerHTML = ART.hero;
+    if (XMAS) {
+      $("#hero-art").insertAdjacentHTML("afterend", `<div class="hero-xmas" aria-hidden="true">${ART.ornaments}${ART.tree}</div>`);
+      $("#hero-pill").innerHTML = `${ART.holly} NAVIDAD EN CASA`;
+      $("#xmas-gifts").hidden = false;
+    }
     $("#featured").innerHTML = skeleton(4);
     try { await loadProducts(); } catch (e) { $("#featured").innerHTML = errorBox(e.message); return; }
 
@@ -288,7 +318,7 @@
     const state = { img: 0, qty: p.bundle ? p.bundle.qty : 1, pol: false, faq: 0 };
     const faqs = [...(c.faqs || []), ...(window.MUVY_FAQ_GENERAL || [])];
     const reviews = c.reviews || [];
-    const christmas = [10, 11].includes(new Date().getMonth());
+    const christmas = XMAS;
     const bc = c.bundleCopy || {};
 
     const draw = () => {

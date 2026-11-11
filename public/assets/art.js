@@ -124,5 +124,37 @@
     art: '<rect x="170" y="140" width="150" height="128" rx="10" fill="#FBF6F2"/><rect x="180" y="150" width="130" height="108" rx="6" fill="none" stroke="#EADDD4" stroke-width="2"/><rect x="196" y="166" width="70" height="8" rx="4" fill="#9A4430"/><rect x="196" y="186" width="98" height="6" rx="3" fill="#EADDD4"/><rect x="196" y="200" width="88" height="6" rx="3" fill="#EADDD4"/><rect x="196" y="214" width="60" height="6" rx="3" fill="#EADDD4"/><path d="M282,246 L272,292 L286,284 L296,298 L302,252 Z" fill="#9A4430"/><path d="M310,246 L320,292 L306,284 L296,298 L290,252 Z" fill="#7A3424"/><circle cx="296" cy="236" r="24" fill="#E0A458"/><circle cx="296" cy="236" r="17" fill="#C0702A"/><polygon points="296.0,227.0 298.4,232.8 304.6,233.2 299.8,237.2 301.3,243.3 296.0,240.0 290.7,243.3 292.2,237.2 287.4,233.2 293.6,232.8" fill="#FBF6F2"/><path d="M346,160 L394,142 L442,160 L442,200 Q442,240 394,262 Q346,240 346,200 Z" fill="#FBF6F2"/><path d="M355,166 L394,151 L433,166 L433,200 Q433,232 394,251 Q355,232 355,200 Z" fill="#9A4430"/><path d="M374,200 L389,215 L416,186" fill="none" stroke="#FBF6F2" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>'
   });
 
-  window.MUVY_ART = { icon, star, stars, hat, snow, hero, sealEnvio, sealGarantia };
+  /* ---------- Navidad ---------- */
+  // Hojas de acebo con bayas.
+  const holly = `<svg class="holly" width="22" height="16" viewBox="0 0 44 32" aria-hidden="true"><path d="M21 18 C14 8 6 10 2 4 C4 12 0 14 4 20 C8 18 10 22 14 24 C14 20 18 20 21 18 Z" fill="#46552A"/><path d="M23 18 C30 8 38 10 42 4 C40 12 44 14 40 20 C36 18 34 22 30 24 C30 20 26 20 23 18 Z" fill="#5F7440"/><circle cx="19" cy="21" r="4" fill="#B8352B"/><circle cx="25" cy="21" r="4" fill="#9A4430"/><circle cx="22" cy="16" r="4" fill="#C9452F"/><circle cx="20.6" cy="14.8" r="1.1" fill="#fff" opacity=".6"/></svg>`;
+
+  // Guirnalda de luces que titilan (se repite a lo ancho).
+  const bulbColors = ["#E0A458", "#C9452F", "#F6DED6", "#7D9156", "#E0A458", "#9A4430"];
+  const lights = `<svg width="100%" height="34" aria-hidden="true"><defs><pattern id="xmas-garland" width="240" height="34" patternUnits="userSpaceOnUse">
+    <path d="M0 6 Q20 18 40 6 T80 6 T120 6 T160 6 T200 6 T240 6" fill="none" stroke="#2B1F1B" stroke-width="1.4" opacity=".55"/>
+    ${bulbColors.map((c, i) => { const x = 20 + i * 40; return `<g class="bulb b${i % 3}"><rect x="${x - 3}" y="12" width="6" height="5" rx="1.5" fill="#5A3A2A"/><ellipse cx="${x}" cy="23" rx="5.5" ry="7.5" fill="${c}"/><ellipse cx="${x - 1.8}" cy="20" rx="1.6" ry="2.6" fill="#fff" opacity=".55"/></g>`; }).join("")}
+  </pattern></defs><rect width="100%" height="34" fill="url(#xmas-garland)"/></svg>`;
+
+  // Esferas colgando en la portada.
+  const ornament = (x, len, r, c, cls) => `<g class="orn ${cls}" style="transform-origin:${x}px 0px"><line x1="${x}" y1="0" x2="${x}" y2="${len}" stroke="#E0A458" stroke-width="1.5"/><rect x="${x - 4}" y="${len - 2}" width="8" height="6" rx="2" fill="#E0A458"/><circle cx="${x}" cy="${len + 4 + r}" r="${r}" fill="${c}"/><path d="M${x - r * .8} ${len + 4 + r} Q${x} ${len + 4 + r * 1.5} ${x + r * .8} ${len + 4 + r}" stroke="#FBF6F2" stroke-width="1.6" fill="none" opacity=".7"/><circle cx="${x - r * .35}" cy="${len + 4 + r * .6}" r="${r * .22}" fill="#fff" opacity=".55"/></g>`;
+  const ornaments = `<svg class="ornaments" viewBox="0 0 390 170" preserveAspectRatio="xMaxYMin meet" aria-hidden="true">
+    ${ornament(268, 70, 13, "#B8352B", "o1")}${ornament(302, 112, 11, "#E0A458", "o2")}${ornament(336, 52, 15, "#46552A", "o3")}${ornament(366, 92, 10, "#9A4430", "o1")}
+    <path d="M240 2 Q300 18 390 4" stroke="#46552A" stroke-width="7" fill="none" stroke-linecap="round"/>
+    <path d="M240 2 Q300 18 390 4" stroke="#7D9156" stroke-width="2" fill="none" stroke-dasharray="3 7" stroke-linecap="round"/>
+  </svg>`;
+
+  // Árbol de Navidad pequeño para la portada.
+  const tree = `<svg class="tree" viewBox="0 0 120 170" aria-hidden="true">
+    <rect x="52" y="140" width="16" height="18" rx="3" fill="#7A4A32"/>
+    <path d="M60 8 L104 140 Q60 152 16 140 Z" fill="#46552A"/>
+    <path d="M60 8 L92 104 Q60 114 28 104 Z" fill="#5F7440"/>
+    <path d="M60 8 L80 66 Q60 73 40 66 Z" fill="#7D9156"/>
+    <path d="M30 118 Q60 108 92 96 M38 84 Q60 78 84 66" stroke="#E0A458" stroke-width="2" fill="none" stroke-dasharray="1 6" stroke-linecap="round"/>
+    <circle cx="44" cy="124" r="4.5" fill="#B8352B"/><circle cx="78" cy="118" r="4.5" fill="#E0A458"/><circle cx="58" cy="94" r="4" fill="#F6DED6"/><circle cx="70" cy="76" r="3.5" fill="#B8352B"/><circle cx="50" cy="70" r="3" fill="#E0A458"/><circle cx="88" cy="132" r="4" fill="#F6DED6"/>
+    <path class="tree-star" d="M60 0 L63.5 8 L72 8.6 L65.5 14 L67.6 22 L60 17.6 L52.4 22 L54.5 14 L48 8.6 L56.5 8 Z" fill="#E0A458"/>
+    <rect x="22" y="146" width="26" height="20" rx="4" fill="#9A4430"/><rect x="33" y="146" width="4" height="20" fill="#F2B9A4"/><rect x="22" y="152" width="26" height="4" fill="#F2B9A4"/>
+    <rect x="74" y="150" width="22" height="16" rx="4" fill="#FBF6F2"/><rect x="83" y="150" width="4" height="16" fill="#B8352B"/>
+  </svg>`;
+
+  window.MUVY_ART = { icon, star, stars, hat, snow, hero, sealEnvio, sealGarantia, holly, lights, ornaments, tree };
 })();
