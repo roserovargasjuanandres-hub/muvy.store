@@ -200,7 +200,31 @@ export default {
           const c = JSON.parse(atob(part + "=".repeat((4 - part.length % 4) % 4)));
           claims = { keys: Object.keys(c), exp: c.exp ? new Date(c.exp * 1000).toISOString() : null, iat: c.iat ? new Date(c.iat * 1000).toISOString() : null };
         } catch { claims = "no es JWT"; }
-        return json({ length: t.length, trimmedLength: tt.length, startsEyJ: tt.startsWith("eyJ"), quotes: /^["']|["']$/.test(tt), spacesInside: /\s/.test(tt), parts: tt.split(".").length, claims });
+        if (claims && typeof claims === "object") {
+          try {
+            const part = tt.split(".")[1].replace(/-/g, "+").replace(/_/g, "/");
+            const c = JSON.parse(atob(part + "=".repeat((4 - part.length % 4) % 4)));
+            claims.values = { iss: c.iss, aud: c.aud, token_type: c.token_type, integration_type: c.integration_type, integration_type_id: c.integration_type_id, integration_url: c.integration_url, ip_url: c.ip_url };
+          } catch {}
+        }
+        const probe = async (path, body) => {
+          try {
+            const r = await fetch("https://api.dropi.co/integrations/" + path, {
+              method: body ? "POST" : "GET",
+              headers: { "Content-Type": "application/json;charset=UTF-8", "dropi-integration-key": tt },
+              body: body ? JSON.stringify(body) : undefined
+            });
+            const txt = await r.text();
+            return { status: r.status, body: txt.slice(0, 160) };
+          } catch (e) { return { error: String(e.message || e) }; }
+        };
+        const probes = {
+          index: await probe("products/index", { startData: 0, pageSize: 1, order_type: "desc", order_by: "id", keywords: "", active: true, no_count: true, integration: true, get_stock: false }),
+          v2: await probe("products/v2/1880273"),
+          v1: await probe("products/1880273"),
+          categories: await probe("categories/")
+        };
+        return json({ probes, length: t.length, trimmedLength: tt.length, startsEyJ: tt.startsWith("eyJ"), quotes: /^["']|["']$/.test(tt), spacesInside: /\s/.test(tt), parts: tt.split(".").length, claims });
       }
       if (url.pathname === "/api/departments" && request.method === "GET") {
         return json({ departments: Object.entries(DEPARTMENTS).map(([code, name]) => ({ code, name })).sort((a, b) => a.name.localeCompare(b.name, "es")) }, 200, { "cache-control": "public, max-age=86400" });
