@@ -1,6 +1,7 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "muvy",
+  "main": "src/index.js",
   "compatibility_date": "2026-11-01",
   "routes": [
     { "pattern": "muvy.shop", "custom_domain": true },
@@ -8,6 +9,11 @@
   ],
   "assets": {
     "directory": "./public",
-    "not_found_handling": "404-page"
-  }
+    "binding": "ASSETS",
+    "not_found_handling": "404-page",
+    "run_worker_first": ["/api/*"]
+  },
+  "observability": { "enabled": true }
+  // Secreto requerido (no va en este archivo): DROPI_TOKEN
+  // Se configura en Cloudflare → Workers → muvy → Settings → Variables and Secrets.
 }

@@ -1,28 +1,31 @@
 # MUVY
 
-Tienda virtual de productos para el hogar — [muvy.shop](https://muvy.shop).
+Tienda virtual de productos para el hogar — [muvy.shop](https://muvy.shop), conectada a **Dropi**.
 
-Sitio estático publicado en Cloudflare Workers. Los pedidos llegan por WhatsApp con pago contra entrega; los productos vienen de Dropi.
+- Los productos, fotos, precios, variantes y stock se leen **en vivo desde Dropi** (caché de 10 minutos).
+- Cada compra crea el pedido **directamente en Dropi**, contra entrega ("CON RECAUDO"), en estado *Pendiente confirmación*. Si el carrito tiene productos de varios proveedores, se crea un pedido por proveedor.
 
-## Estructura
+## Cómo está armado
 
 ```
-public/
-  index.html        Inicio
-  catalogo.html     Catálogo con filtros y buscador
-  producto.html     Detalle de producto (?id=...)
-  carrito.html      Carrito y formulario de pedido
-  assets/
-    config.js       Nombre, WhatsApp y costo de envío
-    products.js     Lista de productos
-    app.js          Lógica de la tienda
-    styles.css      Estilos
-wrangler.jsonc      Configuración de Cloudflare
+src/
+  index.js     Servidor en Cloudflare Workers (API /api/*)
+  dropi.js     Conexión con la API de integraciones de Dropi
+  catalog.js   Qué productos de Dropi se venden y en qué sección
+public/        Páginas de la tienda (inicio, catálogo, producto, carrito)
+wrangler.jsonc Configuración de Cloudflare (dominio muvy.shop)
 ```
+
+## Configuración necesaria
+
+Secreto en Cloudflare (Workers → muvy → Settings → Variables and Secrets):
+
+- `DROPI_TOKEN` — token de integración que da Dropi en **Mis tiendas → Crear tienda**.
 
 ## Cambios frecuentes
 
-- **Número de WhatsApp:** `public/assets/config.js` → `whatsapp`.
-- **Agregar o quitar productos:** `public/assets/products.js`.
+- **Agregar o quitar productos:** `src/catalog.js` — solo el ID de Dropi y la sección.
+- **Precio de venta:** por defecto el sugerido de Dropi; para fijar otro, agrega `price` en `src/catalog.js`.
+- **WhatsApp de atención:** `public/assets/config.js`.
 
-Cada cambio que se sube a la rama `main` se publica solo en Cloudflare.
+Cada cambio que se sube a `main` se publica solo en Cloudflare.

@@ -29,11 +29,14 @@
         <form class="form" id="checkout">
           <div><label for="nombre">Nombre completo</label><input id="nombre" name="nombre" required autocomplete="name"></div>
           <div><label for="telefono">Celular</label><input id="telefono" name="telefono" type="tel" required autocomplete="tel" inputmode="tel"></div>
-          <div><label for="departamento">Departamento</label><input id="departamento" name="departamento" required></div>
-          <div><label for="ciudad">Ciudad o municipio</label><input id="ciudad" name="ciudad" required></div>
+          <div><label for="departamento">Departamento</label><select id="departamento" name="departamento" required></select></div>
+          <div><label for="ciudad">Ciudad o municipio</label><input id="ciudad" name="ciudad" required autocomplete="address-level2"></div>
           <div><label for="direccion">Dirección y barrio</label><input id="direccion" name="direccion" required autocomplete="street-address"></div>
-          <div><label for="notas">Notas (opcional)</label><textarea id="notas" name="notas" rows="2"></textarea></div>
-          <button class="btn btn-primary btn-block" type="submit">Confirmar pedido por WhatsApp</button>
+          <div><label for="email">Correo (opcional)</label><input id="email" name="email" type="email" autocomplete="email"></div>
+          <div><label for="notas">Notas para la entrega (opcional)</label><textarea id="notas" name="notas" rows="2"></textarea></div>
+          <div class="hp" aria-hidden="true"><label for="website">No llenar</label><input id="website" name="website" tabindex="-1" autocomplete="off"></div>
+          <p class="form-msg" id="form-msg" role="alert"></p>
+          <button class="btn btn-primary btn-block" type="submit">Confirmar pedido</button>
         </form>
         <p class="note">Pagas en efectivo cuando recibes tu pedido.</p>
       </aside>
@@ -42,7 +45,6 @@
 
   <div id="footer"></div>
   <script src="/assets/config.js"></script>
-  <script src="/assets/products.js"></script>
   <script src="/assets/app.js"></script>
 </body>
 </html>
