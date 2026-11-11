@@ -1,4 +1,4 @@
-name: Probar conexión con Dropi (v3)
+name: Probar conexión con Dropi (análisis)
 on:
   push:
     paths: [".github/workflows/probar-dropi.yml"]
@@ -7,18 +7,34 @@ jobs:
   probar:
     runs-on: ubuntu-latest
     steps:
-      - name: Consultar Dropi desde GitHub con el token real
+      - name: Análisis de la conexión con Dropi
         env:
           DROPI_TOKEN: ${{ secrets.DROPI_TOKEN }}
         run: |
-          if [ -z "$DROPI_TOKEN" ]; then echo "Falta el secreto DROPI_TOKEN en GitHub"; exit 1; fi
-          echo "Largo del token: ${#DROPI_TOKEN}"
-          for path in "products/v2/1880273" "products/1880273"; do
-            echo "--- GET $path ---"
-            curl -sS -m 30 -w "\nHTTP %{http_code}\n" -H "Content-Type: application/json;charset=UTF-8" -H "dropi-integration-key: $DROPI_TOKEN" "https://api.dropi.co/integrations/$path" | head -c 300
-            echo
-          done
-          echo "--- POST products/index ---"
-          curl -sS -m 30 -w "\nHTTP %{http_code}\n" -X POST -H "Content-Type: application/json;charset=UTF-8" -H "dropi-integration-key: $DROPI_TOKEN" \
-            -d '{"startData":0,"pageSize":1,"order_type":"desc","order_by":"id","keywords":"","active":true,"no_count":true,"integration":true,"get_stock":false}' \
-            https://api.dropi.co/integrations/products/index | head -c 300
+          if [ -z "$DROPI_TOKEN" ]; then echo "Falta el secreto DROPI_TOKEN"; exit 1; fi
+          echo "== Datos públicos del token (sin la firma) =="
+          python3 - <<'PY'
+          import os, json, base64
+          t = os.environ["DROPI_TOKEN"].strip()
+          p = t.split(".")[1]; p += "=" * (-len(p) % 4)
+          c = json.loads(base64.urlsafe_b64decode(p))
+          keep = {k: c.get(k) for k in ["iss","aud","token_type","integration_type","integration_type_id","integration_url","ip_url","iat","exp"]}
+          print(json.dumps(keep, indent=1))
+          print("largo:", len(t), "espacios:", any(ch.isspace() for ch in t))
+          PY
+          URL=https://api.dropi.co/integrations/products/v2/1880273
+          probe () {
+            echo "--- $1 ---"
+            shift
+            curl -sS -m 30 -o /tmp/b -w "HTTP %{http_code}\n" "$@" "$URL"; head -c 220 /tmp/b; echo
+          }
+          T="$(echo -n "$DROPI_TOKEN" | tr -d '[:space:]')"
+          probe "Como el plugin (User-Agent WordPress)" -A "WordPress/6.6.2; https://muvy.shop" -H "Content-Type: application/json;charset=UTF-8" -H "dropi-integration-key: $T"
+          probe "User-Agent de navegador" -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/130 Safari/537.36" -H "Content-Type: application/json;charset=UTF-8" -H "dropi-integration-key: $T"
+          probe "HTTP/1.0 como WordPress" --http1.0 -A "WordPress/6.6.2; https://muvy.shop" -H "Content-Type: application/json;charset=UTF-8" -H "dropi-integration-key: $T"
+          probe "Encabezado Authorization Bearer" -A "WordPress/6.6.2; https://muvy.shop" -H "Authorization: Bearer $T"
+          probe "Encabezado x-authorization" -A "WordPress/6.6.2; https://muvy.shop" -H "x-authorization: Bearer $T"
+          URL=https://api.dropi.co/integrations/products/index
+          probe "POST products/index como el plugin" -A "WordPress/6.6.2; https://muvy.shop" -X POST -H "Content-Type: application/json;charset=UTF-8" -H "dropi-integration-key: $T" -d '{"startData":0,"pageSize":1,"order_type":"desc","order_by":"id","keywords":"","active":true,"no_count":true,"integration":true}'
+          URL=https://api.dropi.co/integrations/categories/
+          probe "GET categories como el plugin" -A "WordPress/6.6.2; https://muvy.shop" -H "Content-Type: application/json;charset=UTF-8" -H "dropi-integration-key: $T"
