@@ -22,7 +22,8 @@ export const CATALOG = [
   // { dropiId: 0, slug: "cubo-tulipanes", category: "Iluminación", featured: true,
   //   name: "Lámpara Cubo de Tulipanes con Efecto Espejo", price: 65900, compareAt: 79500,
   //   bundle: { qty: 2, price: 85950, compareAt: 95950 }, image: "/assets/img/cubo-tulipanes.jpg" },
-  { dropiId: 659568, slug: "calentador", category: "Clima", featured: true, name: "Mini Calentador Portátil", image: "/assets/img/calentador.jpg" },
+  // Retirado: con costo 34.000 y sugerido 54.000, envío 15k ida/vuelta y 30% devoluciones da pérdida (~-5.500 por pedido).
+  // { dropiId: 659568, slug: "calentador", category: "Clima", featured: true, name: "Mini Calentador Portátil", image: "/assets/img/calentador.jpg" },
   { dropiId: 2329707, slug: "picatodo", category: "Cocina", featured: true, name: "Pica Todo 2 en 1", image: "/assets/img/picatodo.jpg" },
   { dropiId: 2328496, slug: "espejo", category: "Baño y belleza", name: "Espejo de Maquillaje LED", image: "/assets/img/espejo.jpg" },
   { dropiId: 2329947, slug: "almohada", category: "Descanso", name: "Almohada Cervical Ergonómica", image: "/assets/img/almohada.jpg" },
