@@ -48,18 +48,20 @@ export const CATALOG = [
   { dropiId: 329892, slug: "maquina-coser", category: "Hogar", name: "Máquina de Coser TRQ" },
   { dropiId: 681399, slug: "hamaca", category: "Terraza", name: "Hamaca de Palo" },
   { dropiId: 2052767, slug: "manta-masajeadora", category: "Bienestar", featured: true, name: "Manta Masajeadora Térmica Corporal" },
-  { dropiId: 1468045, slug: "cubiertos", category: "Cocina", name: "Juego de Cubiertos" },
+  { dropiId: 1468045, slug: "cubiertos", category: "Cocina", name: "Juego de Cubiertos", price: 119900 },
   { dropiId: 1736234, slug: "granos-giratorio", category: "Cocina", name: "Dispensador de Granos Giratorio" },
   // Retirado (stock menor a 60 unidades) Aspiradora Robot Ximeijie: stock 50
   // { dropiId: 791560, slug: "aspiradora-robot", category: "Limpieza", name: "Aspiradora Robot Ximeijie" },
   { dropiId: 848074, slug: "lienzo-flores", category: "Decoración", name: "Lienzo Flores 14" },
-  { dropiId: 1113923, slug: "balde-exprimidor", category: "Limpieza", name: "Balde Exprimidor 30 Litros" },
+  // Retirado a pedido del dueño: Balde Exprimidor 30 L
+  // { dropiId: 1113923, slug: "balde-exprimidor", category: "Limpieza", name: "Balde Exprimidor 30 Litros" },
   // Retirado (stock menor a 60 unidades) Duvet Blue Joy: stock 23
   // { dropiId: 112862, slug: "duvet-blue-joy", category: "Descanso", name: "Set Duvet Blue Joy Queen" },
   // Retirado (stock menor a 60 unidades) Planta Ave del Paraíso: stock 10
   // { dropiId: 409936, slug: "planta-ave-paraiso", category: "Decoración", name: "Planta Ave del Paraíso" },
   { dropiId: 2083861, slug: "maquina-desayuno", category: "Cocina", name: "Máquina de Desayuno Sokany" },
-  { dropiId: 848347, slug: "cuadro-cristo", category: "Decoración", name: "Cuadro Cristo 74" },
+  // Retirado a pedido del dueño: Cuadro Cristo 74
+  // { dropiId: 848347, slug: "cuadro-cristo", category: "Decoración", name: "Cuadro Cristo 74" },
   { dropiId: 846756, slug: "cuadro-flores", category: "Decoración", name: "Cuadro Flores 37" },
   { dropiId: 847164, slug: "cuadro-decorativo", category: "Decoración", name: "Cuadro Decorativo" },
   { dropiId: 1507186, slug: "peluche-cobija", category: "Descanso", name: "Peluche Cobija Safari" },
