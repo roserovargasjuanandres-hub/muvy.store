@@ -106,6 +106,9 @@
       return `<i style="left:${left}%;width:${size}px;height:${size}px;animation-duration:${dur}s;animation-delay:${delay}s"></i>`;
     }).join("");
     document.body.appendChild(snow);
+    // Gorros de Navidad en los botones flotantes y en el carrito del encabezado.
+    const hatSvg = ART.hat.replace('class="hat"', 'class="xhat"').replace(/ width="62" height="54"/, "");
+    document.querySelectorAll(".fab, .header .icon-btn.clay").forEach((b) => b.insertAdjacentHTML("beforeend", hatSvg));
   }
 
   /* ---------- Estructura común ---------- */
@@ -202,16 +205,24 @@
     $("#featured").innerHTML = skeleton(4);
     try { await loadProducts(); } catch (e) { $("#featured").innerHTML = errorBox(e.message); return; }
 
-    // Categorías con la foto de su primer producto.
-    const cats = [];
-    PRODUCTS.forEach((p) => { if (!cats.find((c) => c.name === p.category)) cats.push({ name: p.category, img: p.image }); });
+    // Categorías: ícono propio + cantidad de productos, todas del mismo tamaño.
+    const CAT_ICONS = { "Cocina": "pot", "Iluminación": "bulb", "Baño y belleza": "sparkle", "Descanso": "moon", "Clima": "thermo", "Seguridad": "shield", "Herramientas": "tool" };
+    const cats = [{ name: null, label: "Todo", icon: "grid", n: PRODUCTS.length }];
+    PRODUCTS.forEach((p) => {
+      const c = cats.find((x) => x.name === p.category);
+      if (c) c.n++; else cats.push({ name: p.category, label: p.category, icon: CAT_ICONS[p.category] || "home", n: 1 });
+    });
     let active = null;
     const ordered = [...PRODUCTS.filter((p) => p.featured), ...PRODUCTS.filter((p) => !p.featured)];
     const draw = () => {
-      $("#cats").innerHTML = cats.map((c) => `
-        <button class="cat ${active === c.name ? "active" : ""}" data-cat="${esc(c.name)}" aria-pressed="${active === c.name}">
-          <span class="cat-img">${c.img ? `<img src="${esc(c.img)}" alt="">` : ""}</span><span>${esc(c.name)}</span>
-        </button>`).join("");
+      $("#cats").innerHTML = cats.map((c) => {
+        const on = active === c.name;
+        return `<button class="cat ${on ? "active" : ""}" data-cat="${esc(c.name || "")}" aria-pressed="${on}">
+          <span class="cat-ico">${I(c.icon, 22)}</span>
+          <span class="cat-name">${esc(c.label)}</span>
+          <span class="cat-n">${c.n} ${c.n === 1 ? "producto" : "productos"}</span>
+        </button>`;
+      }).join("");
       const list = active ? ordered.filter((p) => p.category === active) : ordered;
       $("#featured").innerHTML = list.map(card).join("");
       $("#grid-eyebrow").textContent = active ? active.toUpperCase() : "SELECCIÓN MUVY";
@@ -220,7 +231,8 @@
     $("#cats").addEventListener("click", (e) => {
       const c = e.target.closest("[data-cat]");
       if (!c) return;
-      active = active === c.dataset.cat ? null : c.dataset.cat;
+      const name = c.dataset.cat || null;
+      active = active === name ? null : name;
       draw();
     });
     $("#show-all").addEventListener("click", () => { active = null; draw(); });
