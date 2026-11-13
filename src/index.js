@@ -21,7 +21,14 @@ async function loadProduct(env, ctx, entry, { fresh = false } = {}) {
   }
   let raw;
   try {
-    raw = await getDropiProduct(env, entry.dropiId);
+    // Si Dropi limita las consultas ("Too Many Attempts"), espera un poco y reintenta.
+    for (let attempt = 0; ; attempt++) {
+      try { raw = await getDropiProduct(env, entry.dropiId); break; }
+      catch (e) {
+        if (attempt >= 3 || !/too many/i.test(e?.message || "")) throw e;
+        await new Promise((r) => setTimeout(r, 1200 * (attempt + 1)));
+      }
+    }
   } catch (e) {
     const backup = await cache.match(backupKey);
     if (backup && !fresh) return mapProduct(await backup.json(), entry, DEFAULT_MARKUP);
