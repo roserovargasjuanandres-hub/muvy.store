@@ -30,7 +30,19 @@ export const CATALOG = [
   { dropiId: 1214798, slug: "dispensador", category: "Baño y belleza", name: "Dispensador y Esterilizador UV", image: "/assets/img/dispensador.jpg" },
   { dropiId: 2283472, slug: "cortador", category: "Cocina", name: "Cortador de Verduras Vertical", image: "/assets/img/cortador.jpg" },
   { dropiId: 2306315, slug: "solar", category: "Iluminación", name: "Lámpara Solar LED 3 Cabezas", image: "/assets/img/solar.jpg" },
-  { dropiId: 1719052, slug: "sierra", category: "Herramientas", name: "Mini Sierra Eléctrica", image: "/assets/img/sierra.jpg" }
+  { dropiId: 1719052, slug: "sierra", category: "Herramientas", name: "Mini Sierra Eléctrica", image: "/assets/img/sierra.jpg" },
+
+  // Productos nuevos del hogar. Fotos, precio sugerido y stock vienen en vivo desde Dropi.
+  { dropiId: 1619707, slug: "motor-cortinas", category: "Hogar inteligente", featured: true, name: "Motor Inteligente para Cortinas WiFi" },
+  { dropiId: 2002115, slug: "lienzo-universo", category: "Decoración", featured: true, name: "Lienzo x3 Universo Abstracto de Color" },
+  { dropiId: 847339, slug: "lienzo-ciudades", category: "Decoración", name: "Lienzo Ciudades 06" },
+  { dropiId: 847368, slug: "lienzo-perros", category: "Decoración", name: "Lienzo Perros 04" },
+  { dropiId: 329892, slug: "maquina-coser", category: "Hogar", name: "Máquina de Coser TRQ" },
+  { dropiId: 681399, slug: "hamaca", category: "Terraza", name: "Hamaca de Palo" },
+  { dropiId: 2052767, slug: "manta-masajeadora", category: "Bienestar", featured: true, name: "Manta Masajeadora Térmica Corporal" },
+  { dropiId: 1468045, slug: "cubiertos", category: "Cocina", name: "Juego de Cubiertos" },
+  { dropiId: 1736234, slug: "granos-giratorio", category: "Cocina", name: "Dispensador de Granos Giratorio" },
+  { dropiId: 791560, slug: "aspiradora-robot", category: "Limpieza", name: "Aspiradora Robot Ximeijie" }
 ];
 
 // Si un producto no tiene precio sugerido en Dropi, se vende al costo × este margen.

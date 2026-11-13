@@ -149,6 +149,22 @@ h1, h2, h3 { margin: 0; font-weight: 400; letter-spacing: -.01em; }
 .card-add { width: 40px; height: 40px; flex: none; border: 0; border-radius: 50%; background: var(--sand); color: var(--clay); display: flex; align-items: center; justify-content: center; }
 .card-add.hot { background: var(--clay); color: #fff; }
 
+/* Fotos llamativas: fondo cálido, realce de color, zoom suave y sombra al pasar el mouse */
+.card { transition: transform .3s ease, box-shadow .3s ease; }
+.card-media { background: radial-gradient(circle at 50% 40%, #FFF 0%, #F8E9DF 100%); }
+.card-media img { transition: transform .6s ease; filter: saturate(1.08) contrast(1.04); }
+.card-media::before { content: ""; position: absolute; inset: auto 0 0 0; height: 38%; background: linear-gradient(to top, rgba(43,31,27,.16), transparent); z-index: 1; pointer-events: none; }
+.card-media .card-tag { z-index: 2; }
+@media (hover: hover) {
+  .card:hover { transform: translateY(-4px); box-shadow: 0 18px 34px -14px rgba(122, 60, 40, .35); }
+  .card:hover .card-media img { transform: scale(1.07); }
+}
+.card-add.hot { box-shadow: 0 8px 16px -6px rgba(154, 68, 48, .55); }
+@media (prefers-reduced-motion: reduce) {
+  .card, .card-media img { transition: none; }
+  .card:hover, .card:hover .card-media img { transform: none; }
+}
+
 /* Bloques */
 .dark-block { background: var(--ink); color: var(--bg); border-radius: var(--r-lg); padding: 24px 22px; display: flex; flex-direction: column; gap: 14px; }
 .dark-block h2 { font-size: 24px; line-height: 1.2; }
