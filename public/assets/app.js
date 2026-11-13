@@ -206,7 +206,7 @@
     try { await loadProducts(); } catch (e) { $("#featured").innerHTML = errorBox(e.message); return; }
 
     // Categorías: ícono propio + cantidad de productos, todas del mismo tamaño.
-    const CAT_ICONS = { "Cocina": "pot", "Iluminación": "bulb", "Baño y belleza": "sparkle", "Descanso": "moon", "Clima": "thermo", "Seguridad": "shield", "Herramientas": "tool" };
+    const CAT_ICONS = { "Cocina": "pot", "Iluminación": "bulb", "Baño y belleza": "sparkle", "Descanso": "moon", "Clima": "thermo", "Seguridad": "shield", "Herramientas": "tool", "Decoración": "flower", "Hogar inteligente": "wifi", "Bienestar": "heart", "Limpieza": "drop", "Terraza": "sofa", "Hogar": "home" };
     const cats = [{ name: null, label: "Todo", icon: "grid", n: PRODUCTS.length }];
     PRODUCTS.forEach((p) => {
       const c = cats.find((x) => x.name === p.category);
