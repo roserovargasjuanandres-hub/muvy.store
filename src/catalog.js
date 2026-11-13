@@ -67,7 +67,8 @@ export const CATALOG = [
   { dropiId: 1507186, slug: "peluche-cobija", category: "Descanso", name: "Peluche Cobija Safari" },
   { dropiId: 1939415, slug: "arrocera", category: "Cocina", name: "Arrocera Home Elements 2 Libras" },
   { dropiId: 1938192, slug: "ventilador", category: "Clima", name: "Ventilador Universal 8\" Mesa y Pared" },
-  { dropiId: 1760356, slug: "difusor-jarra", category: "Hogar", name: "Difusor de Aromas de Jarra 500 ml" },
+  // Retirado a pedido del dueño: Difusor de Aromas de Jarra
+  // { dropiId: 1760356, slug: "difusor-jarra", category: "Hogar", name: "Difusor de Aromas de Jarra 500 ml" },
   // Retirado (stock menor a 60 unidades) Trapeadora Robot: stock 12
   // { dropiId: 333634, slug: "trapeadora-robot", category: "Limpieza", name: "Trapeadora Robot" },
   // Retirado (stock menor a 60 unidades) Reloj Políptico: stock 20
