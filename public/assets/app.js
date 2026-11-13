@@ -194,10 +194,9 @@
 
   /* ---------- Inicio ---------- */
   async function home() {
-    $("#hero-art").innerHTML = ART.hero;
     if (XMAS) {
-      $("#hero-art").insertAdjacentHTML("afterend", `<div class="hero-xmas" aria-hidden="true">${ART.ornaments}${ART.tree}</div>`);
-      $("#hero-pill").innerHTML = `${ART.holly} NAVIDAD EN CASA`;
+      $(".hero-collage").insertAdjacentHTML("afterend", `<div class="hero-xmas" aria-hidden="true">${ART.ornaments}</div>`);
+      $("#hero-pill").innerHTML = `NAVIDAD EN CASA ${ART.holly}`;
       $("#xmas-gifts").hidden = false;
     }
     $("#featured").innerHTML = skeleton(4);

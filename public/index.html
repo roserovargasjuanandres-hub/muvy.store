@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/styles.css?v=3">
+  <link rel="stylesheet" href="/assets/styles.css?v=4">
   <title>MUVY · Tu casa, más fácil y más bonita</title>
   <meta name="description" content="MUVY: productos para el hogar con pago contraentrega y envíos a toda Colombia.">
 </head>
@@ -16,12 +16,22 @@
   <div id="header"></div>
   <main class="wrap">
     <section class="hero">
-      <div id="hero-art"></div>
+      <div class="hero-collage" aria-hidden="true">
+        <span class="hc-ring"></span>
+        <span class="hc-arch-line"></span>
+        <img class="hc-arch" src="/assets/img/cubo-tulipanes.jpg" alt="">
+        <img class="hc-dot hc-dot-1" src="/assets/img/espejo.jpg" alt="">
+        <img class="hc-dot hc-dot-2" src="/assets/img/almohada.jpg" alt="">
+        <span class="hc-chip"><i></i>Hecho para tu hogar</span>
+      </div>
       <div class="hero-card">
-        <span class="pill pill-blush" id="hero-pill" style="align-self:flex-start;letter-spacing:.08em;font-size:11px">EL HOGAR QUE SOÑASTE</span>
-        <h1>Tu casa, más fácil y más bonita</h1>
-        <p>Productos prácticos para cada rincón. Pides hoy y pagas cuando te llegue.</p>
-        <a class="btn btn-primary" href="#productos">Ver productos <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+        <span class="hero-eyebrow" id="hero-pill">COLECCIÓN HOGAR · 2026</span>
+        <h1>Pequeños detalles que <em>transforman</em> tu hogar</h1>
+        <p>Piezas útiles y bonitas, elegidas para cada rincón de tu casa. Llegan a tu puerta y pagas al recibir.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#productos">Descubrir colección <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+          <a class="hero-link" href="/catalogo">Ver todo el catálogo</a>
+        </div>
       </div>
     </section>
 
@@ -89,6 +99,6 @@
   <script src="/assets/config.js?v=4"></script>
   <script src="/assets/art.js?v=3"></script>
   <script src="/assets/content.js?v=3"></script>
-  <script src="/assets/app.js?v=4"></script>
+  <script src="/assets/app.js?v=5"></script>
 </body>
 </html>
