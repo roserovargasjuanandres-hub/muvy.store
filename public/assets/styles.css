@@ -88,8 +88,8 @@ h1, h2, h3 { margin: 0; font-weight: 400; letter-spacing: -.01em; }
 .hc-arch-line { position: absolute; right: 8%; top: 18px; width: 56%; height: 320px; border: 1.5px solid rgba(154,68,48,.35); border-radius: 999px 999px 28px 28px; transform: translate(-12px, 12px); }
 .hc-arch { position: absolute; right: 8%; top: 18px; width: 56%; height: 320px; object-fit: cover; border-radius: 999px 999px 28px 28px; box-shadow: 0 24px 40px -18px rgba(90,40,25,.45); }
 .hc-dot { position: absolute; border-radius: 50%; object-fit: cover; border: 5px solid #EFE5DD; box-shadow: 0 14px 28px -12px rgba(90,40,25,.4); }
-.hc-dot-1 { width: 112px; height: 112px; left: 6%; top: 40px; object-position: 50% 20%; }
-.hc-dot-2 { width: 86px; height: 86px; left: 15%; top: 186px; }
+.hc-dot-1 { width: 112px; height: 112px; left: 6%; top: 40px; object-fit: contain; background: #F4EBE4; padding: 8px; }
+.hc-dot-2 { width: 86px; height: 86px; left: 15%; top: 186px; object-fit: contain; background: #F4EBE4; padding: 6px; }
 .hc-chip { position: absolute; left: 6%; top: 318px; display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,.92); border-radius: 999px; padding: 8px 14px; font-size: 12px; font-weight: 700; color: var(--ink); box-shadow: var(--shadow); }
 .hc-chip i { width: 8px; height: 8px; border-radius: 50%; background: var(--olive); box-shadow: 0 0 0 4px rgba(70,85,42,.15); }
 .hero-card { position: absolute; left: 12px; right: 12px; bottom: 12px; background: rgba(239,229,221,.86); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border: 1px solid rgba(255,255,255,.7); border-radius: 26px; padding: 22px 20px; display: flex; flex-direction: column; gap: 12px; max-width: 480px; }
