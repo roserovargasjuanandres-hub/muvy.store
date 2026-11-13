@@ -14,8 +14,8 @@ export const CATALOG = [
   {
     dropiId: 2316828, slug: "timbre", category: "Seguridad", featured: true,
     name: "Timbre Inalámbrico Inteligente",
-    price: 79950, compareAt: 95000,
-    bundle: { qty: 2, price: 149950, compareAt: 160000 },
+    price: 99900, compareAt: 119900,
+    bundle: { qty: 2, price: 149950, compareAt: 199800 },
     image: "/assets/img/timbre.png"
   },
   // Lámpara cubo de tulipanes: falta confirmar su ID de Dropi.
