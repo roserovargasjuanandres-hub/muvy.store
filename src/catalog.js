@@ -25,12 +25,18 @@ export const CATALOG = [
   // Retirado: con costo 34.000 y sugerido 54.000, envío 15k ida/vuelta y 30% devoluciones da pérdida (~-5.500 por pedido).
   // { dropiId: 659568, slug: "calentador", category: "Clima", featured: true, name: "Mini Calentador Portátil", image: "/assets/img/calentador.jpg" },
   { dropiId: 2329707, slug: "picatodo", category: "Cocina", featured: true, name: "Pica Todo 2 en 1", image: "/assets/img/picatodo.jpg" },
-  { dropiId: 2328496, slug: "espejo", category: "Baño y belleza", name: "Espejo de Maquillaje LED", image: "/assets/img/espejo.jpg" },
-  { dropiId: 2329947, slug: "almohada", category: "Descanso", name: "Almohada Cervical Ergonómica", image: "/assets/img/almohada.jpg" },
-  { dropiId: 590553, slug: "hervidor", category: "Cocina", name: "Hervidor Eléctrico Plegable", image: "/assets/img/hervidor.jpg" },
-  { dropiId: 1214798, slug: "dispensador", category: "Baño y belleza", name: "Dispensador y Esterilizador UV", image: "/assets/img/dispensador.jpg" },
-  { dropiId: 2283472, slug: "cortador", category: "Cocina", name: "Cortador de Verduras Vertical", image: "/assets/img/cortador.jpg" },
-  { dropiId: 2306315, slug: "solar", category: "Iluminación", name: "Lámpara Solar LED 3 Cabezas", image: "/assets/img/solar.jpg" },
+  // Retirado (30% devol. + fletes 15k) espejo: costo 18.000, sugerido 45.000 → -600 por pedido
+  // { dropiId: 2328496, slug: "espejo", category: "Baño y belleza", name: "Espejo de Maquillaje LED", image: "/assets/img/espejo.jpg" },
+  // Retirado (30% devol. + fletes 15k) almohada: costo 49.900 = sugerido 49.900 → sin margen, pérdida de ~19.500
+  // { dropiId: 2329947, slug: "almohada", category: "Descanso", name: "Almohada Cervical Ergonómica", image: "/assets/img/almohada.jpg" },
+  // Retirado (30% devol. + fletes 15k) hervidor: costo 21.900, sugerido 28.490 → pérdida; además sin stock general
+  // { dropiId: 590553, slug: "hervidor", category: "Cocina", name: "Hervidor Eléctrico Plegable", image: "/assets/img/hervidor.jpg" },
+  // Retirado (30% devol. + fletes 15k) dispensador: en Dropi es un soporte de cepillos (costo 13.000, sugerido 20.000) → pérdida
+  // { dropiId: 1214798, slug: "dispensador", category: "Baño y belleza", name: "Dispensador y Esterilizador UV", image: "/assets/img/dispensador.jpg" },
+  // Retirado (30% devol. + fletes 15k) cortador: costo 19.000, sugerido 21.000 → pérdida; stock 8
+  // { dropiId: 2283472, slug: "cortador", category: "Cocina", name: "Cortador de Verduras Vertical", image: "/assets/img/cortador.jpg" },
+  // Retirado (30% devol. + fletes 15k) solar: costo 37.000, sugerido 74.000 → solo ~6.400 por pedido (<15.000)
+  // { dropiId: 2306315, slug: "solar", category: "Iluminación", name: "Lámpara Solar LED 3 Cabezas", image: "/assets/img/solar.jpg" },
   { dropiId: 1719052, slug: "sierra", category: "Herramientas", name: "Mini Sierra Eléctrica", image: "/assets/img/sierra.jpg" },
 
   // Productos nuevos del hogar. Fotos, precio sugerido y stock vienen en vivo desde Dropi.
