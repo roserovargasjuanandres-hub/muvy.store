@@ -194,6 +194,34 @@ async function createOrder(request, env, ctx) {
   });
 }
 
+// Videos de banco gratuito (licencia Mixkit: uso comercial libre, sin atribución).
+// Se sirven desde muvy.shop y quedan guardados en la caché de Cloudflare.
+const MEDIA = {
+  "/media/hogar.mp4": [
+    "https://assets.mixkit.co/videos/3090/3090-720.mp4",
+    "https://assets.mixkit.co/videos/3090/3090-360.mp4"
+  ]
+};
+
+async function media(request, url) {
+  const sources = MEDIA[url.pathname];
+  if (!sources) return new Response("No encontrado", { status: 404 });
+  const headers = new Headers();
+  const range = request.headers.get("range");
+  if (range) headers.set("range", range);
+  for (const src of sources) {
+    const res = await fetch(src, { headers, cf: { cacheEverything: true, cacheTtl: 2592000 } });
+    if (res.ok || res.status === 206) {
+      const out = new Response(res.body, res);
+      out.headers.set("content-type", "video/mp4");
+      out.headers.set("cache-control", "public, max-age=604800");
+      out.headers.set("accept-ranges", "bytes");
+      return out;
+    }
+  }
+  return new Response("No disponible", { status: 502 });
+}
+
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
@@ -204,6 +232,7 @@ export default {
       return Response.redirect(url.toString(), 301);
     }
 
+    if (url.pathname.startsWith("/media/")) return media(request, url);
     if (!url.pathname.startsWith("/api/")) return env.ASSETS.fetch(request);
 
     try {

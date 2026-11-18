@@ -433,3 +433,8 @@ h1, h2, h3 { margin: 0; font-weight: 400; letter-spacing: -.01em; }
 .icon-btn .xhat { width: 30px; height: 26px; top: -16px; right: -12px; }
 .xmas .btn-primary, .xmas .buy-main, .xmas .offer-cta { position: relative; }
 .xmas .btn-primary::before, .xmas .buy-main::before { content: ""; position: absolute; top: -5px; left: 18%; right: 18%; height: 10px; border-radius: 999px 999px 70% 70% / 999px 999px 100% 100%; background: radial-gradient(circle at 20% 100%, #fff 3px, transparent 3.5px), radial-gradient(circle at 62% 100%, #fff 2.5px, transparent 3px), #fff; box-shadow: 0 1px 2px rgba(43,31,27,.18); pointer-events: none; }
+
+/* Video real de la portada con el tono de la marca */
+.hc-video { background: #D9B297; filter: sepia(.28) saturate(1.12) hue-rotate(-10deg) brightness(.96) contrast(1.03); }
+.hc-tint { position: absolute; right: 8%; top: 18px; width: 56%; height: 320px; border-radius: 999px 999px 28px 28px; background: linear-gradient(180deg, rgba(242,185,164,.22) 0%, rgba(154,68,48,.20) 100%); mix-blend-mode: soft-light; pointer-events: none; }
+@media (min-width: 760px) { .hc-tint { right: 10%; top: 48px; width: 48%; height: 470px; } }
