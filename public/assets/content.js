@@ -87,23 +87,31 @@ window.MUVY_CONTENT = {
 
   picatodo: {
     short: "2 recipientes · 2 velocidades",
-    subtitle: "Pica cebolla, tomate, ajo y hasta carne en segundos. Sin lágrimas, sin cansarte y sin ensuciar media cocina.",
-    photoChip: { icon: "bolt", text: "Pica en segundos" },
+    subtitle: "Pica cebolla, ajo, verduras y carne en segundos. Dos recipientes y dos velocidades para cocinar más rápido, sin lágrimas y sin cansarte.",
+    photoChip: { icon: "bolt", text: "Pica y tritura en segundos" },
     tag: "FAVORITO EN LA COCINA",
+    tagIcon: "pot",
+    bundleCopy: { one: ["1 Pica Todo", "Motor + 2 recipientes"], two: ["2 Pica Todo", "Uno para ti y uno para regalar"], ribbon: "MÁS POPULAR · MEJOR PRECIO" },
+    gift: "Un regalo que se usa todos los días en la cocina.",
     problems: [
-      { icon: "drop", q: "“Picar cebolla me hace llorar”", a: "Lo metes al recipiente, presionas y listo. Ni lágrimas ni olor en las manos." },
-      { icon: "clock", q: "“Cocinar me toma demasiado tiempo”", a: "Lo que antes te tomaba 10 minutos de picar, ahora lo haces en segundos." },
-      { icon: "home", q: "“Moler carne en casa es un lío”", a: "El recipiente de acero te deja preparar carne molida fresca para tus recetas." }
+      { icon: "drop", q: "“Picar cebolla me hace llorar”", a: "Lo metes al recipiente, presionas y listo. Sin lágrimas ni olor en las manos." },
+      { icon: "clock", q: "“Cocinar me toma demasiado tiempo”", a: "Lo que antes tardaba minutos de picar, ahora son segundos." },
+      { icon: "home", q: "“Moler carne en casa es un lío”", a: "Con el recipiente de acero preparas carne y pollo picados cuando los necesites." }
     ],
     features: [
-      { icon: "sliders", title: "2 velocidades", text: "Suave para picar en trozos o rápida para triturar." },
-      { icon: "cube", title: "2 recipientes", text: "Uno en acero inoxidable y otro plástico, según lo que prepares." },
-      { icon: "bolt", title: "Uso sencillo", text: "Solo presionas el botón de arriba y empieza a picar." },
-      { icon: "drop", title: "Fácil de lavar", text: "Las piezas se separan para limpiarlas sin complicaciones." }
+      { icon: "sliders", title: "2 velocidades", text: "Para picar en trozos o triturar más fino, según tu receta." },
+      { icon: "cube", title: "2 recipientes", text: "Uno de acero inoxidable y otro transparente para cada preparación." },
+      { icon: "bolt", title: "Motor eléctrico", text: "Fácil de usar: presionas y empieza a picar." },
+      { icon: "sparkle", title: "Cuchillas eficientes", text: "Diseñadas para un corte rápido." },
+      { icon: "drop", title: "Fácil de desmontar y limpiar", text: "Las piezas se separan para lavarlas sin complicaciones." },
+      { icon: "gift", title: "Compacto y resistente", text: "Diseño moderno que no ocupa mucho espacio." }
     ],
+    emotion: { eyebrow: "MENOS TIEMPO EN LA COCINA", title: "Prepara hoy lo que antes dejabas para mañana.", text: "Salsas, sofritos, carne molida y verduras listas en segundos. Más tiempo para sentarte a comer con quienes quieres." },
     faqs: [
-      ["¿Qué puedo picar?", "Verduras como cebolla, tomate, pimentón y ajo, hierbas, frutos secos y carne para moler."],
-      ["¿Para qué es cada recipiente?", "El de acero inoxidable es ideal para carne y preparaciones más pesadas; el plástico, para verduras y salsas."]
+      ["¿Qué puedo picar?", "Carne y pollo, cebolla, ajo, zanahoria y otras verduras. También sirve para salsas y aderezos."],
+      ["¿Qué trae el paquete?", "El motor eléctrico, un recipiente de acero inoxidable, uno transparente y las cuchillas de cada recipiente."],
+      ["¿Es fácil de limpiar?", "Sí. Se desmonta y las piezas se lavan por separado."],
+      ["¿Tiene garantía?", "Sí, cubre defectos de fábrica. Si llega con algún problema, escríbenos por WhatsApp y te ayudamos."]
     ]
   },
 
@@ -262,21 +270,33 @@ window.MUVY_CONTENT = {
   },
 
   "motor-cortinas": {
-    short: "Cortinas con control desde el celular",
-    subtitle: "Abre tus cortinas desde la cama y deja que la luz de la mañana te despierte. Tu casa se siente más moderna sin cambiar nada más.",
+    short: "Persianas con app, voz y control",
+    subtitle: "Convierte tus persianas enrollables en persianas inteligentes. Súbelas desde el celular, con tu voz o con el control, y programa que se abran solas cada mañana.",
+    photoChip: { icon: "wifi", text: "WiFi 2,4 GHz · Alexa · Google · Siri" },
+    tag: "HOGAR INTELIGENTE",
+    tagIcon: "wifi",
+    bundleCopy: { one: ["1 Motor", "Para una persiana"], two: ["2 Motores", "Dos persianas, un solo envío"], ribbon: "MÁS POPULAR · MEJOR PRECIO" },
+    gift: "Un regalo moderno para quien estrena casa o apartamento.",
     problems: [
-      { icon: "bed", q: "“Me da pereza levantarme a abrir la cortina”", a: "Con el control o desde el celular las abres y cierras sin moverte del sofá o de la cama." },
-      { icon: "home", q: "“Quiero una casa más moderna”", a: "Es el detalle de hogar inteligente que se nota y que cualquiera aprende a usar en minutos." }
+      { icon: "bed", q: "“Me da pereza levantarme a subir la persiana”", a: "Con el control remoto o desde la app la subes y la bajas sin salir de la cama." },
+      { icon: "clock", q: "“Salgo temprano y llego tarde”", a: "Programa horarios: se abre sola con la luz de la mañana y se cierra al caer la tarde." },
+      { icon: "home", q: "“Quiero una casa inteligente sin gastar una fortuna”", a: "No cambias tu persiana. Le instalas el motor y ya la controlas desde donde estés." }
     ],
     features: [
-      { icon: "wifi", title: "Control por WiFi", text: "Ábrelas y ciérralas desde la app, estés en casa o fuera." },
-      { icon: "bolt", title: "Con control remoto", text: "También funciona con control, sin necesidad de celular." },
-      { icon: "sparkle", title: "Silencioso y práctico", text: "Tu cortina se mueve sola, sin jalar ni forzar los rieles." },
-      { icon: "home", title: "Para tus cortinas actuales", text: "Se adapta a tu riel, sin cambiar tus cortinas." }
+      { icon: "wifi", title: "Control por WiFi", text: "Funciona con redes de 2,4 GHz. Controla tus persianas desde cualquier lugar con la app." },
+      { icon: "bolt", title: "Control remoto incluido", text: "Si prefieres lo tradicional, también la manejas con el control." },
+      { icon: "music", title: "Comandos de voz", text: "Compatible con Google Assistant, Alexa y Siri." },
+      { icon: "clock", title: "Rutinas programables", text: "Fija horarios para subir y bajar tus persianas y aprovecha mejor la luz natural." },
+      { icon: "tool", title: "Instalación sencilla", text: "Diseño compacto para persianas enrollables, con instrucciones detalladas." },
+      { icon: "shield", title: "También manual", text: "Si se va el internet, puedes operarlas manualmente." }
     ],
+    emotion: { eyebrow: "COMODIDAD DE VERDAD", title: "Despierta con luz natural, sin levantarte.", text: "Programas la hora y tu persiana se abre sola. En la noche la cierras desde el sofá. Tu casa se siente moderna y tú te ahorras el trabajo." },
     faqs: [
-      ["¿Funciona con cualquier cortina?", "Está pensado para cortinas con riel. Escríbenos por WhatsApp con una foto de tu riel y te confirmamos si es compatible antes de enviarlo."],
-      ["¿Necesito internet?", "Para controlarlo desde el celular necesitas WiFi en casa. Con el control remoto funciona sin internet."]
+      ["¿Con qué persianas funciona?", "Está diseñado para persianas enrollables (tipo roller). Antes de comprar, escríbenos por WhatsApp con una foto de tu persiana y te confirmamos si es compatible."],
+      ["¿Necesito internet?", "Para controlarlo desde el celular necesitas WiFi de 2,4 GHz. Con el control remoto y de forma manual funciona sin internet."],
+      ["¿Funciona con Alexa, Google o Siri?", "Sí, es compatible con Google Assistant, Alexa y Siri para abrir y cerrar con tu voz."],
+      ["¿Se instala fácil?", "Sí. Es compacto, viene con instrucciones detalladas y no necesitas ser experto."],
+      ["¿Puedo programar horarios?", "Sí. Desde la app configuras rutinas para que tus persianas suban o bajen a la hora que quieras."]
     ]
   },
 
@@ -332,56 +352,96 @@ window.MUVY_CONTENT = {
   },
 
   "maquina-coser": {
-    short: "Para tus arreglos y proyectos en casa",
-    subtitle: "Acorta ese pantalón, arregla la cortina o crea algo tuyo sin pagar costura cada vez. Una máquina compacta que cabe en cualquier rincón.",
+    short: "12 puntadas · para principiantes",
+    subtitle: "Una máquina de coser pequeña y fácil de usar, con 12 puntadas integradas y tensión ajustable. Arregla tu ropa, crea tus propios proyectos y ahorra en costura.",
+    photoChip: { icon: "tool", text: "12 puntadas integradas" },
+    tag: "ARREGLA Y CREA",
+    tagIcon: "tool",
+    bundleCopy: { one: ["1 Máquina", "Para tus proyectos"], two: ["2 Máquinas", "Una para ti y otra para regalar"], ribbon: "MÁS POPULAR · MEJOR PRECIO" },
+    gift: "Un regalo para quien quiere aprender a coser o crear con sus manos.",
     problems: [
-      { icon: "clock", q: "“Siempre pago por arreglos pequeños”", a: "Hazlos tú en casa, cuando quieras, y ahorra en cada uno." },
-      { icon: "home", q: "“No tengo espacio”", a: "Es compacta, la guardas fácil en un mueble o un cajón grande." }
+      { icon: "clock", q: "“Siempre pago por un dobladillo o un arreglo”", a: "Hazlos tú en casa, cuando quieras, y ahorra en cada uno." },
+      { icon: "home", q: "“No tengo espacio para una máquina grande”", a: "Es pequeña y portátil: la guardas en un cajón o repisa." },
+      { icon: "sparkle", q: "“Nunca he cosido y me da miedo empezar”", a: "Es de operación simple y está pensada para principiantes." }
     ],
     features: [
-      { icon: "tool", title: "Para arreglos y proyectos", text: "Dobladillos, parches, cortinas y más." },
-      { icon: "home", title: "Compacta", text: "Ocupa poco espacio en tu casa." },
-      { icon: "sparkle", title: "Para aprender", text: "Ideal si apenas estás empezando a coser." },
-      { icon: "gift", title: "Gran regalo", text: "Para quien quiere empezar a crear con sus manos." }
+      { icon: "sliders", title: "12 puntadas integradas", text: "Decorativas, dobladillo ciego, zigzag y puntadas elásticas." },
+      { icon: "tool", title: "Tensión ajustable", text: "Ajusta la tensión del hilo superior según la tela." },
+      { icon: "home", title: "Pequeña y portátil", text: "Cabe en cualquier rincón y la mueves fácil." },
+      { icon: "sparkle", title: "Operación simple", text: "Ideal para empezar, arreglos y proyectos de bricolaje." },
+      { icon: "gift", title: "Gran regalo", text: "Blanca con aplicaciones moradas, de diseño encantador." }
     ],
+    emotion: { eyebrow: "HECHO POR TI", title: "Arregla, personaliza y crea sin salir de casa.", text: "Dobladillos, cortinas, cojines o un detalle para regalar. Con una máquina pequeña y sencilla, tu ropa y tu casa vuelven a ser nuevas." },
+    occasions: ["Día de la Madre", "Cumpleaños", "Navidad", "Estrenar casa", "Amor y amistad"],
     faqs: [
-      ["¿Sirve para principiantes?", "Sí. Es una máquina compacta pensada para arreglos y proyectos sencillos en casa."],
-      ["¿Trae instrucciones?", "Incluye lo necesario para empezar. Si tienes dudas, escríbenos por WhatsApp."]
+      ["¿Cuántas puntadas tiene?", "Tiene 12 puntadas integradas, entre ellas decorativas, dobladillo ciego, zigzag y elásticas."],
+      ["¿Sirve para principiantes?", "Sí. Su tamaño pequeño y su operación simple la hacen ideal para empezar."],
+      ["¿Se puede ajustar la tensión del hilo?", "Sí, tiene ajuste de tensión del hilo superior."],
+      ["¿Qué puedo coser con ella?", "Arreglos de ropa, dobladillos, proyectos de manualidades y bricolaje. Para telas muy gruesas, escríbenos y te orientamos."],
+      ["¿De qué color es?", "Blanca con aplicaciones moradas."]
     ]
   },
 
   hamaca: {
-    short: "Descansa en tu balcón o terraza",
-    subtitle: "Tu rincón favorito para no hacer nada. Cuélgala en el balcón, la terraza o el jardín y date un descanso de verdad.",
+    short: "Algodón · hasta 160 kg · para dos",
+    subtitle: "Una hamaca grande de algodón suave, con palos de madera, para que dos personas se estiren y desconecten en el balcón, la terraza o el jardín.",
+    photoChip: { icon: "sofa", text: "Para dos · hasta 160 kg" },
+    tag: "DESCONÉCTATE",
+    tagIcon: "sofa",
+    bundleCopy: { one: ["1 Hamaca", "Tu rincón de descanso"], two: ["2 Hamacas", "Una para la casa y otra para la finca"], ribbon: "MÁS POPULAR · MEJOR PRECIO" },
+    gift: "Un regalo que invita a descansar. Perfecto para el Día del Padre o la Madre.",
     problems: [
-      { icon: "sofa", q: "“Quiero un lugar para desconectarme”", a: "Una hamaca convierte cualquier rincón en tu espacio de descanso." }
+      { icon: "sofa", q: "“Quiero un lugar para desconectarme”", a: "Cuélgala y tienes tu rincón de descanso en casa, sin salir a ningún lado." },
+      { icon: "home", q: "“Mi balcón está vacío”", a: "Su diseño elegante se integra en terrazas, jardines, balcones e interiores." },
+      { icon: "heart", q: "“Nunca hay espacio para dos”", a: "Mide 130 cm de ancho por 230 cm de largo: hay lugar para que dos personas se estiren." }
     ],
     features: [
-      { icon: "sofa", title: "Para descansar", text: "Siesta, lectura o simplemente aire fresco." },
-      { icon: "home", title: "Para balcón, terraza o jardín", text: "Cuélgala donde tengas dos puntos firmes." },
-      { icon: "gift", title: "Regalo para quien lo merece", text: "Un detalle que invita a descansar." }
+      { icon: "sofa", title: "Para dos personas", text: "130 cm de ancho y 230 cm de largo, con 380 cm de largo total." },
+      { icon: "shield", title: "Soporta hasta 160 kg", text: "Hecha con materiales de calidad para un descanso seguro." },
+      { icon: "heart", title: "Algodón suave", text: "Tejido fresco y cómodo para tus siestas." },
+      { icon: "tool", title: "Palos de madera", text: "Palos de 90 cm, piola de poliéster y herraje metálico." },
+      { icon: "sparkle", title: "Varios colores", text: "Elige el que combine con tu decoración." }
     ],
+    emotion: { eyebrow: "TU RINCÓN FAVORITO", title: "La siesta del domingo ya no tiene que esperar.", text: "Mece, lee o simplemente mira el cielo. Una hamaca bonita y resistente que se convierte en el lugar favorito de la casa." },
+    occasions: ["Día de la Madre", "Día del Padre", "Estrenar casa", "Cumpleaños", "Navidad"],
+    places: [["sofa", "Balcón"], ["flower", "Jardín"], ["home", "Terraza"], ["bed", "Interiores"]],
     faqs: [
-      ["¿Dónde la puedo colgar?", "En dos puntos firmes y resistentes, como columnas, vigas o árboles. Revisa siempre que estén bien asegurados."]
+      ["¿Cuánto mide?", "130 cm de ancho, 230 cm de largo y 380 cm de largo total. Los palos de madera miden 90 cm."],
+      ["¿Cuánto peso aguanta?", "Está diseñada para soportar hasta 160 kg."],
+      ["¿Cómo se cuida?", "Lávala a mano con agua tibia, sécala a la sombra, no uses cloro ni la planches. Evita dejarla al sol y al agua."],
+      ["¿Dónde la puedo colgar?", "En balcón, terraza, jardín o interiores, siempre en dos puntos firmes y resistentes."],
+      ["¿Viene en varios colores?", "Sí, hay varios colores. Elígelo al hacer tu pedido o escríbenos por WhatsApp."]
     ]
   },
 
   "manta-masajeadora": {
-    short: "Calor y masaje para descansar",
-    subtitle: "Llegas cansado, te envuelves en la manta y sientes cómo se afloja el cuerpo. El plan perfecto para el sofá o la cama.",
+    short: "Calor + vibración + peso",
+    subtitle: "Una almohadilla térmica con peso que combina calor, vibración y presión suave. Tu espalda, cuello y hombros descansan en el sofá, la cama o la silla de la oficina.",
+    photoChip: { icon: "heart", text: "3 niveles de calor · 3 de vibración" },
+    tag: "RELAX TOTAL",
+    tagIcon: "heart",
+    bundleCopy: { one: ["1 Manta", "Para ti"], two: ["2 Mantas", "Una para ti y otra para regalar"], ribbon: "MÁS POPULAR · 1 PARA TI + 1 PARA REGALAR" },
+    gift: "El regalo para quien siempre termina el día cansado.",
     problems: [
-      { icon: "moon", q: "“Termino el día con el cuerpo cargado”", a: "Con calor y masaje te relajas sin salir de casa." },
-      { icon: "bed", q: "“Hace frío y no quiero prender calefacción”", a: "Te abriga justo donde lo necesitas." }
+      { icon: "moon", q: "“Termino el día con la espalda cargada”", a: "Calor y vibración justo donde lo necesitas, sin salir de casa." },
+      { icon: "bed", q: "“Me cuesta soltar el estrés”", a: "El peso suave y el calor relajan antes de dormir o después del trabajo." },
+      { icon: "home", q: "“Un masaje profesional sale caro”", a: "La usas cuantas veces quieras, en tu cama, tu sofá o tu oficina." }
     ],
     features: [
-      { icon: "thermo", title: "Calor reconfortante", text: "Abriga y relaja tu espalda y tu cuerpo." },
-      { icon: "heart", title: "Masaje", text: "Un masaje suave para aliviar la tensión." },
-      { icon: "sofa", title: "Para sofá o cama", text: "Úsala viendo una serie o antes de dormir." },
-      { icon: "gift", title: "Regalo con cariño", text: "Ideal para papás, abuelos o para ti." }
+      { icon: "thermo", title: "3 niveles de calor", text: "Elige la intensidad que más te acomode." },
+      { icon: "bolt", title: "3 niveles de vibración", text: "Combínalos y obtén hasta 9 combinaciones relajantes." },
+      { icon: "heart", title: "Con peso", text: "El peso mantiene el calor exactamente donde lo necesitas." },
+      { icon: "sofa", title: "Terciopelo suave", text: "Una sensación cómoda y acogedora sobre la piel." },
+      { icon: "sparkle", title: "Para todo el cuerpo", text: "Úsala en cuello, hombros, espalda, abdomen y piernas." }
     ],
+    emotion: { eyebrow: "DESCANSO DE VERDAD", title: "Llega a casa, enciéndela y suelta el día.", text: "Calor que reconforta, vibración que relaja y un peso que abraza. Pequeños momentos para ti, sin salir de casa." },
+    occasions: ["Día de la Madre", "Día del Padre", "Cumpleaños", "Navidad", "Amor y amistad"],
     faqs: [
-      ["¿Cómo se usa?", "La conectas, eliges la función que quieras y te recuestas sobre ella."],
-      ["¿Es segura?", "Úsala como lo indica el manual y no la dejes encendida sin supervisión."]
+      ["¿Cómo funciona?", "La conectas, eliges un nivel de calor y uno de vibración y te recuestas o la apoyas sobre la zona que quieras relajar."],
+      ["¿Cuántos ajustes tiene?", "6 ajustes: 3 niveles de calor y 3 de vibración, que puedes combinar en 9 maneras."],
+      ["¿Dónde la puedo usar?", "En cuello, hombros, espalda, abdomen y piernas, en la cama, el sofá o la silla de oficina."],
+      ["¿De qué color es?", "Gris, en material de terciopelo suave."],
+      ["¿Es segura?", "Úsala como indica el manual y no la dejes encendida sin supervisión. Si tienes alguna condición médica, consulta antes con tu médico."]
     ]
   },
 
@@ -402,19 +462,31 @@ window.MUVY_CONTENT = {
   },
 
   "granos-giratorio": {
-    short: "Arroz, granos y cereales a la mano",
-    subtitle: "Gira, sirve y listo. Tu arroz, lentejas y cereales ordenados y siempre listos, sin bolsas abiertas por toda la cocina.",
+    short: "5 compartimentos · tapa abatible",
+    subtitle: "Arroz, fríjol, lentejas y cereales en un solo organizador. Sirves la porción exacta, sin bolsas abiertas ni granos regados por toda la cocina.",
+    photoChip: { icon: "cube", text: "5 compartimentos con tapa" },
+    tag: "COCINA ORGANIZADA",
+    tagIcon: "pot",
+    bundleCopy: { one: ["1 Dispensador", "Para tu alacena"], two: ["2 Dispensadores", "Granos secos y cereales, todo ordenado"], ribbon: "MÁS POPULAR · MEJOR PRECIO" },
+    gift: "Un detalle útil para quien está armando su cocina.",
     problems: [
-      { icon: "home", q: "“Mi alacena es un desorden de bolsas”", a: "Un solo dispensador giratorio reúne todo y se ve bien en el mesón." },
-      { icon: "clock", q: "“Sacar el arroz es un enredo”", a: "Giras, sirves la porción y lo cierras." }
+      { icon: "home", q: "“Mi alacena es un desorden de bolsas”", a: "Un solo organizador con 5 compartimentos reúne arroz, fríjoles y productos secos." },
+      { icon: "clock", q: "“Sacar el arroz siempre ensucia”", a: "Sirves la porción exacta desde el dispensador, sin regar ni rasgar paquetes." },
+      { icon: "drop", q: "“Se me llenan de bichos o humedad”", a: "Cada compartimento tiene tapa abatible para cerrar y proteger lo que guardas." }
     ],
     features: [
-      { icon: "cube", title: "Varios compartimentos", text: "Guarda diferentes granos en un solo lugar." },
-      { icon: "sparkle", title: "Giratorio", text: "Escoges lo que necesitas con un giro." },
-      { icon: "pot", title: "Cocina ordenada", text: "Más espacio en el mesón y la alacena." }
+      { icon: "cube", title: "5 compartimentos", text: "Arroz, fríjoles, lentejas y otros productos secos, cada uno en su lugar." },
+      { icon: "sparkle", title: "Tapa abatible", text: "Se abre y se cierra fácil para mantener todo protegido." },
+      { icon: "drop", title: "Apto para lavavajillas", text: "Lo limpias sin complicarte." },
+      { icon: "pot", title: "Plástico reutilizable", text: "Una solución práctica para todos los días." },
+      { icon: "home", title: "Cocina más ordenada", text: "Gana espacio en la alacena y en el mesón." }
     ],
+    emotion: { eyebrow: "UNA COCINA QUE DA GUSTO", title: "Todo en su lugar, siempre a la mano.", text: "Abres la alacena y ya no hay bolsas a medio cerrar. Cada grano tiene su compartimento y servir se vuelve rápido, limpio y sin desperdicio." },
     faqs: [
-      ["¿Cuántos granos puedo guardar?", "Tiene varios compartimentos para guardar granos y cereales distintos."]
+      ["¿Cuántos compartimentos tiene?", "Tiene 5 compartimentos para arroz, fríjoles y otros productos secos."],
+      ["¿Se puede lavar?", "Sí, es apto para lavavajillas."],
+      ["¿Qué puedo guardar?", "Arroz, fríjoles, lentejas, cereales y productos secos en general."],
+      ["¿Cuánto cabe en cada compartimento?", "Escríbenos por WhatsApp y te contamos la capacidad aproximada para que lo compares con lo que sueles guardar."]
     ]
   },
 

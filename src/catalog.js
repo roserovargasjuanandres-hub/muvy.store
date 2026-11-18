@@ -24,7 +24,7 @@ export const CATALOG = [
   //   bundle: { qty: 2, price: 85950, compareAt: 95950 }, image: "/assets/img/cubo-tulipanes.jpg" },
   // Retirado: con costo 34.000 y sugerido 54.000, envío 15k ida/vuelta y 30% devoluciones da pérdida (~-5.500 por pedido).
   // { dropiId: 659568, slug: "calentador", category: "Clima", featured: true, name: "Mini Calentador Portátil", image: "/assets/img/calentador.jpg" },
-  { dropiId: 2329707, slug: "picatodo", category: "Cocina", featured: true, name: "Pica Todo 2 en 1", image: "/assets/img/picatodo.jpg" },
+  { dropiId: 2329707, slug: "picatodo", category: "Cocina", featured: true, name: "Pica Todo 2 en 1", image: "/assets/img/picatodo.jpg", price: 99500, compareAt: 109900, bundle: { qty: 2, price: 189900, compareAt: 199000 } },
   // Retirado (30% devol. + fletes 15k) espejo: costo 18.000, sugerido 45.000 → -600 por pedido
   // { dropiId: 2328496, slug: "espejo", category: "Baño y belleza", name: "Espejo de Maquillaje LED", image: "/assets/img/espejo.jpg" },
   // Retirado (30% devol. + fletes 15k) almohada: costo 49.900 = sugerido 49.900 → sin margen, pérdida de ~19.500
@@ -40,16 +40,16 @@ export const CATALOG = [
   { dropiId: 1719052, slug: "sierra", category: "Herramientas", name: "Mini Sierra Eléctrica", image: "/assets/img/sierra.jpg" },
 
   // Productos nuevos del hogar. Fotos, precio sugerido y stock vienen en vivo desde Dropi.
-  { dropiId: 1619707, slug: "motor-cortinas", category: "Hogar inteligente", featured: true, name: "Motor Inteligente para Cortinas WiFi" },
+  { dropiId: 1619707, slug: "motor-cortinas", category: "Hogar inteligente", featured: true, name: "Motor Inteligente para Cortinas WiFi", price: 300000, compareAt: 319900, bundle: { qty: 2, price: 579900, compareAt: 600000 } },
   // Retirado (stock menor a 60 unidades) Lienzo Universo: stock 50
   // { dropiId: 2002115, slug: "lienzo-universo", category: "Decoración", featured: true, name: "Lienzo x3 Universo Abstracto de Color" },
   { dropiId: 847339, slug: "lienzo-ciudades", category: "Decoración", name: "Lienzo Ciudades 06" },
   { dropiId: 847368, slug: "lienzo-perros", category: "Decoración", name: "Lienzo Perros 04" },
-  { dropiId: 329892, slug: "maquina-coser", category: "Hogar", name: "Máquina de Coser TRQ" },
-  { dropiId: 681399, slug: "hamaca", category: "Terraza", name: "Hamaca de Palo" },
-  { dropiId: 2052767, slug: "manta-masajeadora", category: "Bienestar", featured: true, name: "Manta Masajeadora Térmica Corporal" },
+  { dropiId: 329892, slug: "maquina-coser", category: "Hogar", name: "Máquina de Coser TRQ", price: 199900, compareAt: 214900, bundle: { qty: 2, price: 389900, compareAt: 399800 } },
+  { dropiId: 681399, slug: "hamaca", category: "Terraza", name: "Hamaca de Palo", price: 150000, compareAt: 159900, bundle: { qty: 2, price: 289900, compareAt: 300000 } },
+  { dropiId: 2052767, slug: "manta-masajeadora", category: "Bienestar", featured: true, name: "Manta Masajeadora Térmica Corporal", price: 120000, compareAt: 129900, bundle: { qty: 2, price: 229900, compareAt: 240000 } },
   { dropiId: 1468045, slug: "cubiertos", category: "Cocina", name: "Juego de Cubiertos", price: 119900 },
-  { dropiId: 1736234, slug: "granos-giratorio", category: "Cocina", name: "Dispensador de Granos Giratorio" },
+  { dropiId: 1736234, slug: "granos-giratorio", category: "Cocina", name: "Dispensador de Granos Giratorio", price: 149900, compareAt: 159900, bundle: { qty: 2, price: 279900, compareAt: 299800 } },
   // Retirado (stock menor a 60 unidades) Aspiradora Robot Ximeijie: stock 50
   // { dropiId: 791560, slug: "aspiradora-robot", category: "Limpieza", name: "Aspiradora Robot Ximeijie" },
   { dropiId: 848074, slug: "lienzo-flores", category: "Decoración", name: "Lienzo Flores 14" },
