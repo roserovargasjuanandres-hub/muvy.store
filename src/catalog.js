@@ -11,6 +11,7 @@
 //   bundle     (opcional) combo: { qty, price, compareAt } — precio total al llevar esa cantidad
 //   image      (opcional) foto principal propia (en public/assets/img); las de Dropi quedan como galería
 export const CATALOG = [
+  // Solo los favoritos del dueño en Dropi. Nombre, fotos y stock se leen en vivo desde Dropi.
   {
     dropiId: 2316828, slug: "timbre", category: "Seguridad", featured: true,
     name: "Timbre Inalámbrico Inteligente",
@@ -18,64 +19,15 @@ export const CATALOG = [
     bundle: { qty: 2, price: 149950, compareAt: 199800 },
     image: "/assets/img/timbre.png"
   },
-  // Lámpara cubo de tulipanes: falta confirmar su ID de Dropi.
-  // { dropiId: 0, slug: "cubo-tulipanes", category: "Iluminación", featured: true,
-  //   name: "Lámpara Cubo de Tulipanes con Efecto Espejo", price: 65900, compareAt: 79500,
-  //   bundle: { qty: 2, price: 85950, compareAt: 95950 }, image: "/assets/img/cubo-tulipanes.jpg" },
-  // Retirado: con costo 34.000 y sugerido 54.000, envío 15k ida/vuelta y 30% devoluciones da pérdida (~-5.500 por pedido).
-  // { dropiId: 659568, slug: "calentador", category: "Clima", featured: true, name: "Mini Calentador Portátil", image: "/assets/img/calentador.jpg" },
-  // Retirado por pedido del dueño: { dropiId: 2329707, slug: "picatodo", category: "Cocina", featured: true, name: "Pica Todo 2 en 1", image: "/assets/img/picatodo.jpg", price: 99500, compareAt: 109900, bundle: { qty: 2, price: 189900, compareAt: 199000 } }
-  // Retirado (30% devol. + fletes 15k) espejo: costo 18.000, sugerido 45.000 → -600 por pedido
-  // { dropiId: 2328496, slug: "espejo", category: "Baño y belleza", name: "Espejo de Maquillaje LED", image: "/assets/img/espejo.jpg" },
-  // Retirado (30% devol. + fletes 15k) almohada: costo 49.900 = sugerido 49.900 → sin margen, pérdida de ~19.500
-  // { dropiId: 2329947, slug: "almohada", category: "Descanso", name: "Almohada Cervical Ergonómica", image: "/assets/img/almohada.jpg" },
-  // Retirado (30% devol. + fletes 15k) hervidor: costo 21.900, sugerido 28.490 → pérdida; además sin stock general
-  // { dropiId: 590553, slug: "hervidor", category: "Cocina", name: "Hervidor Eléctrico Plegable", image: "/assets/img/hervidor.jpg" },
-  // Retirado (30% devol. + fletes 15k) dispensador: en Dropi es un soporte de cepillos (costo 13.000, sugerido 20.000) → pérdida
-  // { dropiId: 1214798, slug: "dispensador", category: "Baño y belleza", name: "Dispensador y Esterilizador UV", image: "/assets/img/dispensador.jpg" },
-  // Retirado (30% devol. + fletes 15k) cortador: costo 19.000, sugerido 21.000 → pérdida; stock 8
-  // { dropiId: 2283472, slug: "cortador", category: "Cocina", name: "Cortador de Verduras Vertical", image: "/assets/img/cortador.jpg" },
-  // Retirado (30% devol. + fletes 15k) solar: costo 37.000, sugerido 74.000 → solo ~6.400 por pedido (<15.000)
-  // { dropiId: 2306315, slug: "solar", category: "Iluminación", name: "Lámpara Solar LED 3 Cabezas", image: "/assets/img/solar.jpg" },
+  { dropiId: 2329707, slug: "picatodo", category: "Cocina", featured: true, name: "Pica Todo 2 en 1", image: "/assets/img/picatodo.jpg" },
+  { dropiId: 2329947, slug: "almohada", category: "Descanso", featured: true, name: "Almohada Cervical Ergonómica", image: "/assets/img/almohada.jpg" },
+  { dropiId: 2306315, slug: "solar", category: "Iluminación", featured: true, name: "Lámpara Solar LED 3 Cabezas", image: "/assets/img/solar.jpg" },
+  { dropiId: 590553, slug: "hervidor", category: "Cocina", name: "Hervidor Eléctrico Plegable", image: "/assets/img/hervidor.jpg" },
   { dropiId: 1719052, slug: "sierra", category: "Herramientas", name: "Mini Sierra Eléctrica", image: "/assets/img/sierra.jpg" },
-
-  // Productos nuevos del hogar. Fotos, precio sugerido y stock vienen en vivo desde Dropi.
-  // Retirado por pedido del dueño: { dropiId: 1619707, slug: "motor-cortinas", category: "Hogar inteligente", featured: true, name: "Motor Inteligente para Cortinas WiFi", price: 300000, compareAt: 319900, bundle: { qty: 2, price: 579900, compareAt: 600000 } }
-  // Retirado (stock menor a 60 unidades) Lienzo Universo: stock 50
-  // { dropiId: 2002115, slug: "lienzo-universo", category: "Decoración", featured: true, name: "Lienzo x3 Universo Abstracto de Color" },
-  { dropiId: 847339, slug: "lienzo-ciudades", category: "Decoración", name: "Lienzo Ciudades 06" },
-  { dropiId: 847368, slug: "lienzo-perros", category: "Decoración", name: "Lienzo Perros 04" },
-  // Retirado por pedido del dueño: { dropiId: 329892, slug: "maquina-coser", category: "Hogar", name: "Máquina de Coser TRQ", price: 199900, compareAt: 214900, bundle: { qty: 2, price: 389900, compareAt: 399800 } }
-  // Retirado por pedido del dueño: { dropiId: 681399, slug: "hamaca", category: "Terraza", name: "Hamaca de Palo", price: 150000, compareAt: 159900, bundle: { qty: 2, price: 289900, compareAt: 300000 } }
-  // Retirado por pedido del dueño: { dropiId: 2052767, slug: "manta-masajeadora", category: "Bienestar", featured: true, name: "Manta Masajeadora Térmica Corporal", price: 120000, compareAt: 129900, bundle: { qty: 2, price: 229900, compareAt: 240000 } }
-  { dropiId: 1468045, slug: "cubiertos", category: "Cocina", name: "Juego de Cubiertos", price: 119900 },
-  // Retirado por pedido del dueño: { dropiId: 1736234, slug: "granos-giratorio", category: "Cocina", name: "Dispensador de Granos Giratorio", price: 149900, compareAt: 159900, bundle: { qty: 2, price: 279900, compareAt: 299800 } }
-  // Retirado (stock menor a 60 unidades) Aspiradora Robot Ximeijie: stock 50
-  // { dropiId: 791560, slug: "aspiradora-robot", category: "Limpieza", name: "Aspiradora Robot Ximeijie" },
-  { dropiId: 848074, slug: "lienzo-flores", category: "Decoración", name: "Lienzo Flores 14" },
-  // Retirado a pedido del dueño: Balde Exprimidor 30 L
-  // { dropiId: 1113923, slug: "balde-exprimidor", category: "Limpieza", name: "Balde Exprimidor 30 Litros" },
-  // Retirado (stock menor a 60 unidades) Duvet Blue Joy: stock 23
-  // { dropiId: 112862, slug: "duvet-blue-joy", category: "Descanso", name: "Set Duvet Blue Joy Queen" },
-  // Retirado (stock menor a 60 unidades) Planta Ave del Paraíso: stock 10
-  // { dropiId: 409936, slug: "planta-ave-paraiso", category: "Decoración", name: "Planta Ave del Paraíso" },
-  { dropiId: 2083861, slug: "maquina-desayuno", category: "Cocina", name: "Máquina de Desayuno Sokany" },
-  // Retirado a pedido del dueño: Cuadro Cristo 74
-  // { dropiId: 848347, slug: "cuadro-cristo", category: "Decoración", name: "Cuadro Cristo 74" },
-  { dropiId: 846756, slug: "cuadro-flores", category: "Decoración", name: "Cuadro Flores 37" },
-  { dropiId: 847164, slug: "cuadro-decorativo", category: "Decoración", name: "Cuadro Decorativo" },
-  { dropiId: 1507186, slug: "peluche-cobija", category: "Descanso", name: "Peluche Cobija Safari" },
-  { dropiId: 1939415, slug: "arrocera", category: "Cocina", name: "Arrocera Home Elements 2 Libras" },
-  { dropiId: 1938192, slug: "ventilador", category: "Clima", name: "Ventilador Universal 8\" Mesa y Pared" },
-  // Retirado a pedido del dueño: Difusor de Aromas de Jarra
-  // { dropiId: 1760356, slug: "difusor-jarra", category: "Hogar", name: "Difusor de Aromas de Jarra 500 ml" },
-  // Retirado (stock menor a 60 unidades) Trapeadora Robot: stock 12
-  // { dropiId: 333634, slug: "trapeadora-robot", category: "Limpieza", name: "Trapeadora Robot" },
-  // Retirado (stock menor a 60 unidades) Reloj Políptico: stock 20
-  // { dropiId: 137914, slug: "reloj-poliptico", category: "Decoración", name: "Reloj de Pared Estilo Políptico" },
-  { dropiId: 1998405, slug: "armario-modular", category: "Hogar", name: "Armario Plástico Infantil Modular" },
-  { dropiId: 2057497, slug: "estante-cocina", category: "Cocina", name: "Estante de Pie para Cocina con Tapa" },
-  { dropiId: 2312331, slug: "jabon-triple", category: "Baño y belleza", name: "Dispensador Triple de Jabón de Pared" }
+  { dropiId: 2330070, slug: "fav-2330070" },
+  { dropiId: 2343532, slug: "fav-2343532" },
+  { dropiId: 2120183, slug: "fav-2120183" },
+  { dropiId: 405336, slug: "fav-405336" }
 ];
 
 // Si un producto no tiene precio sugerido en Dropi, se vende al costo × este margen.
