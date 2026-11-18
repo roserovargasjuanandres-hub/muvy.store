@@ -197,6 +197,8 @@
 
   /* ---------- Inicio ---------- */
   async function home() {
+    const heroVideo = $("video.hc-arch");
+    if (heroVideo && matchMedia("(prefers-reduced-motion: reduce)").matches) heroVideo.pause();
     if (XMAS) {
       $(".hero-collage").insertAdjacentHTML("afterend", `<div class="hero-xmas" aria-hidden="true">${ART.ornaments}</div>`);
       $("#hero-pill").innerHTML = `NAVIDAD EN CASA ${ART.holly}`;
