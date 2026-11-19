@@ -24,7 +24,7 @@ export const CATALOG = [
   { dropiId: 2306315, slug: "solar", category: "Iluminación", featured: true, name: "Lámpara Solar LED 3 Cabezas", price: 86900, image: "/assets/img/solar.jpg" },
   { dropiId: 590553, slug: "hervidor", category: "Cocina", name: "Hervidor Eléctrico Plegable", price: 71900, image: "/assets/img/hervidor.jpg" },
   { dropiId: 1719052, slug: "sierra", category: "Herramientas", name: "Mini Sierra Eléctrica", image: "/assets/img/sierra.jpg" },
-  { dropiId: 2330070, slug: "tulipanes-cupula", category: "Iluminación", featured: true, name: "Lámpara de Tulipanes con Cúpula LED", price: 77900 },
+  { dropiId: 1332032, slug: "cubo-tulipanes", category: "Iluminación", featured: true, name: "Lámpara Cubo de Tulipanes con Efecto Espejo", price: 65900, compareAt: 79500, bundle: { qty: 2, price: 85950, compareAt: 95950 }, image: "/assets/img/cubo-tulipanes.jpg" },
   { dropiId: 2343532, slug: "esterilizador-cepillos", category: "Baño y belleza", name: "Esterilizador Porta Cepillos Automático", price: 77900 },
   { dropiId: 2120183, slug: "dispensador-agua", category: "Cocina", name: "Dispensador de Agua Recargable", price: 84900 },
   { dropiId: 405336, slug: "organizador-zapatos", category: "Hogar", name: "Organizador de Zapatos Metálico 6 Niveles", price: 70900 }
