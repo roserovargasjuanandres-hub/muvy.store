@@ -1,0 +1,42 @@
+name: Radar de mercado
+
+on:
+  schedule:
+    # Cada 6 horas (hora Colombia: 1 a. m., 7 a. m., 1 p. m., 7 p. m.)
+    - cron: "0 0,6,12,18 * * *"
+  workflow_dispatch: # botón "Run workflow" para correrlo cuando quieras
+
+permissions:
+  contents: write
+
+concurrency:
+  group: radar-mercado
+  cancel-in-progress: false
+
+jobs:
+  radar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Revisar mercado
+        env:
+          DROPI_TOKEN: ${{ secrets.DROPI_TOKEN }}
+          ML_ACCESS_TOKEN: ${{ secrets.ML_ACCESS_TOKEN }}
+        run: node bot/mercado/index.js
+
+      - name: Guardar reporte en el repositorio
+        if: always()
+        run: |
+          git config user.name "radar-muvy[bot]"
+          git config user.email "radar-muvy@users.noreply.github.com"
+          git add bot/mercado/reportes
+          git diff --cached --quiet && exit 0
+          git commit -m "Radar de mercado $(TZ=America/Bogota date '+%Y-%m-%d %H:%M')"
+          git pull --rebase --autostash
+          git push
