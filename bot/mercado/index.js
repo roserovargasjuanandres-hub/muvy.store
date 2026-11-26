@@ -11,6 +11,7 @@ import { fileURLToPath } from "node:url";
 import { CATALOG } from "../../src/catalog.js";
 import { REGLAS, PALABRAS_CLAVE, RESULTADOS_POR_PALABRA } from "./config.js";
 import { evaluar, fmt } from "./analisis.js";
+import { detectarCambios } from "./cambios.js";
 import * as reales from "./fuentes/index.js";
 import * as demo from "./fuentes/demo.js";
 
@@ -83,25 +84,30 @@ async function main() {
   }
   const oportunidades = nuevos.filter((n) => n.apto).sort((a, b) => b.puntaje - a.puntaje);
 
-  // 4. Cambios desde la última revisión (costo o stock en Dropi)
-  const anterior = await readFile(join(DIR_REPORTES, "ultimo.json"), "utf8").then(JSON.parse).catch(() => null);
-  const cambios = [];
-  for (const p of tienda) {
-    const antes = anterior?.tienda?.find((x) => x.dropiId === p.dropiId);
-    if (!antes) continue;
-    if (antes.costo !== p.costo) cambios.push(`**${p.nombre}**: costo Dropi $${fmt(antes.costo)} → $${fmt(p.costo)}`);
-    if (antes.stock >= REGLAS.stockMinimo && p.stock < REGLAS.stockMinimo) cambios.push(`**${p.nombre}**: el stock bajó a ${p.stock} unidades`);
-  }
+  // 4. Cambios desde la última revisión
+  const sufijo = MODO_DEMO ? "-demo" : "";
+  const anterior = await readFile(join(DIR_REPORTES, `ultimo${sufijo}.json`), "utf8").then(JSON.parse).catch(() => null);
+  const cambios = detectarCambios(anterior, { tienda, oportunidades });
 
   const resultado = { fecha: inicio.toISOString(), demo: MODO_DEMO, reglas: REGLAS, tendencias: { google, mercadolibre: ml }, tienda, oportunidades, cambios, errores };
   const md = reporte(resultado);
 
   await mkdir(join(DIR_REPORTES, "historial"), { recursive: true });
-  const sufijo = MODO_DEMO ? "-demo" : "";
   await writeFile(join(DIR_REPORTES, `ultimo${sufijo}.md`), md);
   await writeFile(join(DIR_REPORTES, `ultimo${sufijo}.json`), JSON.stringify(resultado, null, 2));
   if (!MODO_DEMO) await writeFile(join(DIR_REPORTES, "historial", `${inicio.toISOString().slice(0, 13)}h.json`), JSON.stringify(resultado));
   if (process.env.GITHUB_STEP_SUMMARY) await appendFile(process.env.GITHUB_STEP_SUMMARY, md);
+
+  // Correo: solo si algo cambió (o es la primera revisión). El workflow lo envía.
+  const enviar = !anterior || cambios.length > 0;
+  const titulo = !anterior
+      ? "Radar MUVY: primera revisión del mercado"
+      : `Radar MUVY: ${cambios.length} cambio${cambios.length === 1 ? "" : "s"} en el mercado`;
+  if (enviar) {
+    await writeFile(join(process.env.RUNNER_TEMP || AQUI, "correo.md"), md);
+    await writeFile(join(process.env.RUNNER_TEMP || AQUI, "correo-asunto.txt"), titulo);
+  }
+  if (process.env.GITHUB_OUTPUT) await appendFile(process.env.GITHUB_OUTPUT, `enviar_correo=${enviar}\n${enviar ? `asunto=${titulo}\n` : ""}`);
 
   console.log(md);
   // Si no se pudo leer ni un producto de Dropi, la ejecución falla para que GitHub avise.

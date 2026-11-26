@@ -17,6 +17,8 @@ jobs:
   radar:
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    env:
+      CORREO_USUARIO: ${{ secrets.CORREO_USUARIO }}
     steps:
       - uses: actions/checkout@v4
 
@@ -25,10 +27,26 @@ jobs:
           node-version: 22
 
       - name: Revisar mercado
+        id: radar
         env:
           DROPI_TOKEN: ${{ secrets.DROPI_TOKEN }}
           ML_ACCESS_TOKEN: ${{ secrets.ML_ACCESS_TOKEN }}
         run: node bot/mercado/index.js
+
+      - name: Avisar por correo si el mercado cambió
+        if: steps.radar.outputs.enviar_correo == 'true' && env.CORREO_USUARIO != ''
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          secure: true
+          username: ${{ secrets.CORREO_USUARIO }}
+          password: ${{ secrets.CORREO_CLAVE }}
+          from: Radar MUVY <${{ secrets.CORREO_USUARIO }}>
+          to: ${{ secrets.CORREO_DESTINO || secrets.CORREO_USUARIO }}
+          subject: ${{ steps.radar.outputs.asunto }}
+          html_body: file://${{ runner.temp }}/correo.md
+          convert_markdown: true
 
       - name: Guardar reporte en el repositorio
         if: always()

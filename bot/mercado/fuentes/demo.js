@@ -19,7 +19,9 @@ export async function tendenciasML() {
 
 export async function producto(id) {
   const r = azar(id);
-  const costo = Math.round((25000 + r() * 35000) / 100) * 100;
+  let costo = Math.round((25000 + r() * 35000) / 100) * 100;
+  // DEMO_VARIAR=1 simula que Dropi subió el costo de algunos productos.
+  if (process.env.DEMO_VARIAR && id % 3 === 0) costo += 3000;
   return { dropiId: id, nombre: `Producto ${id}`, costo, sugeridoDropi: Math.round(costo * 1.9 / 100) * 100, stock: Math.round(r() * 400), categoria: "Hogar", proveedor: "Demo" };
 }
 

@@ -9,7 +9,11 @@ Bot que corre solo en GitHub Actions cada 6 horas y deja un reporte en
    las reglas, ordenados por puntaje (ganancia, stock, tendencia y ventas de la competencia).
 3. **Tendencias**: lo más buscado en Colombia en Google y, con token, en MercadoLibre. 🔥 marca los
    productos que coinciden.
-4. **Alertas**: avisa si un producto de la tienda cambió de costo en Dropi o se quedó sin stock.
+4. **Alertas por correo**: si algo cambió desde la revisión anterior, te manda un correo con el reporte.
+   Si nada cambió, no escribe. Cuenta como cambio: costo en Dropi, stock bajo el mínimo o recuperado,
+   un producto que deja de cumplir (o vuelve a cumplir) las reglas, la competencia de MercadoLibre
+   moviendo precios 10% o más, el precio recomendado cambiando 5% o más, un producto que entra en
+   tendencia y oportunidades nuevas en Dropi. Los umbrales están en `cambios.js`.
 
 ## Reglas (en `config.js`)
 
@@ -26,6 +30,15 @@ En GitHub → **Settings → Secrets and variables → Actions → New repositor
 |---|---|---|
 | `DROPI_TOKEN` | El mismo token de integración que usa la tienda (Dropi → Mis tiendas) | Sí |
 | `ML_ACCESS_TOKEN` | Precios y tendencias de MercadoLibre (app en developers.mercadolibre.com.co) | Recomendado |
+| `CORREO_USUARIO` | La cuenta de Gmail que envía los avisos (ej. tucorreo@gmail.com) | Para correos |
+| `CORREO_CLAVE` | Contraseña de aplicación de esa cuenta (no tu contraseña normal; ver abajo) | Para correos |
+| `CORREO_DESTINO` | A quién llegan los avisos; varios separados por coma. Si no lo pones, llega a `CORREO_USUARIO` | No |
+
+### Contraseña de aplicación de Gmail
+
+1. Activa la verificación en dos pasos en myaccount.google.com → Seguridad.
+2. Entra a myaccount.google.com/apppasswords, crea una llamada "Radar MUVY" y copia las 16 letras.
+3. Pégalas (sin espacios) en el secreto `CORREO_CLAVE`.
 
 Luego en **Actions → Radar de mercado → Run workflow** para la primera revisión.
 
