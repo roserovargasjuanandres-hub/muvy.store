@@ -25,7 +25,7 @@ export async function producto(id) {
   return { dropiId: id, nombre: `Producto ${id}`, costo, sugeridoDropi: Math.round(costo * 1.9 / 100) * 100, stock: Math.round(r() * 400), categoria: "Hogar", proveedor: "Demo" };
 }
 
-const NUEVOS = ["Freidora de Aire 4L", "Aspiradora Inalámbrica Portátil", "Masajeador Cervical Eléctrico", "Humidificador Llama de Fuego", "Organizador Giratorio de Cocina", "Lámpara LED de Escritorio Plegable"];
+const NUEVOS = ["Freidora de Aire 4L", "Selladora Portátil de Bolsas", "Organizador Giratorio 360", "Aspiradora Inalámbrica Portátil", "Masajeador Cervical Eléctrico", "Humidificador Llama de Fuego", "Organizador Giratorio de Cocina", "Lámpara LED de Escritorio Plegable"];
 
 export async function buscar(palabra) {
   return NUEVOS.filter((n) => n.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().includes(palabra.slice(0, 5))).map((nombre, i) => {
@@ -39,4 +39,15 @@ export async function competencia(nombre) {
   const r = azar(nombre.length * 31);
   const mediana = Math.round((80000 + r() * 60000) / 100) * 100;
   return { consulta: nombre.toLowerCase(), publicaciones: 120, minimo: Math.round(mediana * 0.7), mediana, maximo: Math.round(mediana * 1.5), vendidos: Math.round(r() * 3000) };
+}
+
+export async function investigarRedes() {
+  const { rankear } = await import("./redes.js");
+  const pubs = [
+    { fuente: "YouTube", titulo: "TikTok me hizo comprarlo: freidora de aire", texto: "freidora de aire tiktok me hizo comprarlo", vistas: 850000, url: "https://youtu.be/demo1" },
+    { fuente: "YouTube", titulo: "Selladora portátil viral", texto: "selladora de bolsas viral", vistas: 420000, url: "https://youtu.be/demo2" },
+    { fuente: "TikTok", titulo: "#organizadorgiratorio", texto: "organizador giratorio", vistas: 300000 },
+    { fuente: "YouTube", titulo: "Lámpara solar sin cables", texto: "lampara solar para patio", vistas: 150000, url: "https://youtu.be/demo3" }
+  ];
+  return { ranking: rankear(pubs), publicaciones: pubs.length, errores: [] };
 }

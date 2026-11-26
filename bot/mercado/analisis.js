@@ -66,6 +66,7 @@ function puntaje(p, ganancia) {
   s += Math.min(40, Math.max(0, ganancia) / 1000);           // hasta 40 pts: $40.000 de ganancia esperada
   s += Math.min(15, (p.stock || 0) / 20);                     // hasta 15 pts: 300+ unidades
   s += p.enTendencia ? 20 : 0;                                // 20 pts si aparece en Google Tendencias
+  s += p.enRedes ? 15 : 0;                                    // 15 pts si se mueve en redes sociales
   if (p.competencia?.vendidos) s += Math.min(15, Math.log10(p.competencia.vendidos + 1) * 5);
   if (p.competencia?.mediana && p.costo) s += Math.min(10, ((p.competencia.mediana - p.costo) / p.costo) * 5);
   return Math.round(Math.min(100, s));

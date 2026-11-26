@@ -10,7 +10,7 @@ const UMBRAL_PRECIO_RECOMENDADO = 0.05;  // el precio recomendado cambió 5% o m
 const variacion = (antes, ahora) => (antes && ahora ? (ahora - antes) / antes : 0);
 const pct = (v) => `${v > 0 ? "+" : ""}${Math.round(v * 100)}%`;
 
-export function detectarCambios(anterior, { tienda, oportunidades }) {
+export function detectarCambios(anterior, { tienda, oportunidades, redes = [] }) {
   if (!anterior) return [];
   const cambios = [];
   const previos = new Map((anterior.tienda || []).map((p) => [p.dropiId, p]));
@@ -33,6 +33,11 @@ export function detectarCambios(anterior, { tienda, oportunidades }) {
     if (Math.abs(vRec) >= UMBRAL_PRECIO_RECOMENDADO) cambios.push(`**${p.nombre}**: precio recomendado $${fmt(a.precioRecomendado)} → $${fmt(p.precioRecomendado)}`);
 
     if (!a.enTendencia && p.enTendencia) cambios.push(`**${p.nombre}**: 🔥 entró en tendencia ("${p.enTendencia}")`);
+  }
+
+  const redesAntes = new Set((anterior.redes?.ranking || []).slice(0, 5).map((r) => r.producto));
+  for (const r of redes.slice(0, 5)) {
+    if (anterior.redes && !redesAntes.has(r.producto)) cambios.push(`📱 **${r.producto}** entró al top 5 de redes sociales (${fmt(r.vistas)} vistas)`);
   }
 
   const idsAntes = new Set((anterior.oportunidades || []).map((o) => o.dropiId));
