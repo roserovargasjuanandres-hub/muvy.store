@@ -14,6 +14,12 @@ Bot que corre solo en GitHub Actions cada 6 horas y deja un reporte en
    un producto que deja de cumplir (o vuelve a cumplir) las reglas, la competencia de MercadoLibre
    moviendo precios 10% o más, el precio recomendado cambiando 5% o más, un producto que entra en
    tendencia y oportunidades nuevas en Dropi. Los umbrales están en `cambios.js`.
+5. **Tabla de valores antes / ahora**: cada vez que hay cambios, el correo y el reporte traen una tabla
+   que compara cada producto con lo guardado en la revisión anterior (costo Dropi, precio de la tienda,
+   precio recomendado, mínimo y mediana de MercadoLibre, ganancia esperada y stock), con ▲▼ y el %.
+   También se guarda como CSV para abrir en Excel o Google Sheets:
+   - `reportes/comparacion-ultima.csv`: la más reciente.
+   - `reportes/comparaciones/`: todas, una por revisión con cambios, para ver la historia de precios.
 
 ## Reglas (en `config.js`)
 

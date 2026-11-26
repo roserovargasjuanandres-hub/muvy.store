@@ -11,7 +11,7 @@ import { fileURLToPath } from "node:url";
 import { CATALOG } from "../../src/catalog.js";
 import { REGLAS, PALABRAS_CLAVE, RESULTADOS_POR_PALABRA } from "./config.js";
 import { evaluar, fmt } from "./analisis.js";
-import { detectarCambios } from "./cambios.js";
+import { detectarCambios, tablaComparativa, tablaMarkdown, tablaCSV } from "./cambios.js";
 import * as reales from "./fuentes/index.js";
 import * as demo from "./fuentes/demo.js";
 
@@ -88,13 +88,23 @@ async function main() {
   const sufijo = MODO_DEMO ? "-demo" : "";
   const anterior = await readFile(join(DIR_REPORTES, `ultimo${sufijo}.json`), "utf8").then(JSON.parse).catch(() => null);
   const cambios = detectarCambios(anterior, { tienda, oportunidades });
+  // Tabla de valores antes/ahora: solo cuando algo cambió.
+  const comparacion = cambios.length ? tablaComparativa(anterior, tienda) : [];
 
-  const resultado = { fecha: inicio.toISOString(), demo: MODO_DEMO, reglas: REGLAS, tendencias: { google, mercadolibre: ml }, tienda, oportunidades, cambios, errores };
+  const resultado = { fecha: inicio.toISOString(), demo: MODO_DEMO, reglas: REGLAS, tendencias: { google, mercadolibre: ml }, tienda, oportunidades, cambios, comparacion, fechaAnterior: anterior?.fecha || null, errores };
   const md = reporte(resultado);
 
   await mkdir(join(DIR_REPORTES, "historial"), { recursive: true });
   await writeFile(join(DIR_REPORTES, `ultimo${sufijo}.md`), md);
   await writeFile(join(DIR_REPORTES, `ultimo${sufijo}.json`), JSON.stringify(resultado, null, 2));
+  if (comparacion.length) {
+    // Se guarda cada comparación con su fecha, y una copia fija con la más reciente.
+    const csv = tablaCSV(comparacion, resultado.fecha, resultado.fechaAnterior);
+    const dirComp = join(DIR_REPORTES, MODO_DEMO ? "comparaciones-demo" : "comparaciones");
+    await mkdir(dirComp, { recursive: true });
+    await writeFile(join(dirComp, `${resultado.fecha.slice(0, 13)}h.csv`), csv);
+    await writeFile(join(DIR_REPORTES, `comparacion-ultima${sufijo}.csv`), csv);
+  }
   if (!MODO_DEMO) await writeFile(join(DIR_REPORTES, "historial", `${inicio.toISOString().slice(0, 13)}h.json`), JSON.stringify(resultado));
   if (process.env.GITHUB_STEP_SUMMARY) await appendFile(process.env.GITHUB_STEP_SUMMARY, md);
 
@@ -114,12 +124,13 @@ async function main() {
   if (!tienda.length && !MODO_DEMO) process.exitCode = 1;
 }
 
-function reporte({ fecha, demo, tienda, oportunidades, cambios, tendencias, errores }) {
+function reporte({ fecha, demo, tienda, oportunidades, cambios, comparacion, fechaAnterior, tendencias, errores }) {
   const hora = new Date(fecha).toLocaleString("es-CO", { timeZone: "America/Bogota" });
   const l = [];
   l.push(`# Radar de mercado MUVY${demo ? " (DEMO)" : ""}`, "", `Revisión: ${hora}`, "");
 
   if (cambios.length) l.push("## ⚠️ Cambios desde la última revisión", "", ...cambios.map((c) => `- ${c}`), "");
+  if (comparacion?.length) l.push(tablaMarkdown(comparacion, fechaAnterior));
 
   l.push("## Productos de la tienda", "");
   l.push("| Producto | Costo | Precio actual | Ganancia esp. | ML mín / mediana | Precio recomendado | Stock | Estado |");
